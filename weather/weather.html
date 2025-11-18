@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - Weather Check</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="weather.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS WEATHER CHECK</div> 
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="https://hs-toolkit.netlify.app/" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">Check Weather</h2>
+        <div class="search-box">
+            <input type="text" id="city-input" class="styled-input" placeholder="Enter city name (e.g., Bhakkar, London)">
+            <button id="search-btn" class="styled-button">Check</button>
+        </div>
+    </div>
+    
+    <div class="content-card" id="result-wrapper">
+    
+        <div class="initial-message" id="initial-message">
+            <i class="fas fa-search-location"></i>
+            <h3>Search for a City</h3>
+            <p>Enter a city name above to check current weather conditions and air quality</p>
+        </div>
+        
+        <div class="message-box error hidden" id="error-message">
+            <p>City not found. Please check the spelling and try again.</p>
+        </div>
+        
+        <div class="weather-content hidden" id="weather-card">
+            <div class="weather-header">
+                <div class="location">
+                    <h2 id="city-name"></h2>
+                    <p id="location-details"></p>
+                </div>
+                <div class="current-temp">
+                    <div class="temp" id="temperature"></div>
+                    <div class="condition" id="weather-condition"></div>
+                </div>
+            </div>
+            
+            <div class="weather-icon-display">
+                <i class="fas fa-cloud" id="weather-icon-element"></i>
+            </div>
+            
+            <div class="weather-details">
+                <div class="detail-card">
+                    <i class="fas fa-temperature-high"></i>
+                    <div class="value" id="feels-like"></div>
+                    <div class="label">Feels Like</div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-tint"></i>
+                    <div class="value" id="humidity"></div>
+                    <div class="label">Humidity</div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-wind"></i>
+                    <div class="value" id="wind-speed"></div>
+                    <div class="label">Wind Speed</div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                    <div class="value" id="pressure"></div>
+                    <div class="label">Pressure</div>
+                </div>
+            </div>
+            
+            <div class="air-quality">
+                <h3><i class="fas fa-smog"></i> Air Quality</h3>
+                <div class="aqi-indicator">
+                    <div class="aqi-value" id="aqi-value"></div>
+                    <div class="aqi-status" id="aqi-status"></div>
+                </div>
+                <div class="pollutants">
+                    <div class="pollutant">
+                        <div class="name">PM2.5</div>
+                        <div class="value" id="pm25"></div>
+                    </div>
+                    <div class="pollutant">
+                        <div class="name">PM10</div>
+                        <div class="value" id="pm10"></div>
+                    </div>
+                    <div class="pollutant">
+                        <div class="name">CO</div>
+                        <div class="value" id="co"></div>
+                    </div>
+                    <div class="pollutant">
+                        <div class="name">NO₂</div>
+                        <div class="value" id="no2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div> 
+    
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="weather.js" defer></script>
+
+ </body>
+                          </html>
