@@ -3,7 +3,8 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>HS TOOLKIT - Photo Hub</title> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <title>HS TOOLKIT - Photo Hub</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <style>
     /* ============================================
@@ -37,7 +38,7 @@
       --border-color: rgba(255, 255, 255, 0.1);
       --toggle-bg: #333;
       --toggle-knob: #fff; /* Fixed */
-      --input-bg: rgba(0, 0, 0, 0.2); /* Dark mode 'Back' button fix */
+      --input-bg: rgba(0, 0, 0, 0.2);
     }
 
     /* ============================================
@@ -179,6 +180,7 @@
       -webkit-text-fill-color: transparent;
     }
     
+    /* Profile Icon (FIXED - Changed from <a> to <div>) */
     .profile-icon {
       width: 40px;
       height: 40px;
@@ -194,7 +196,7 @@
       box-shadow: 0 2px 10px var(--shadow-color);
       transition: transform 0.2s ease;
       flex-shrink: 0;
-      text-decoration: none; /* Added to remove underline */
+      text-decoration: none;
     }
 
     .profile-icon:hover {
@@ -306,19 +308,67 @@
     }
 
     /* ============================================
-      PART 7: DEVELOPER MODAL STYLES (REMOVED)
+      PART 7: DEVELOPER MODAL STYLES (RESTORED)
       ============================================
     */
-    /* Modal styles removed */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center; align-items: center;
+      z-index: 1000; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal-overlay.open { opacity: 1; visibility: visible; }
+    .modal-content {
+      background: var(--card-bg); backdrop-filter: blur(15px);
+      border: 1px solid var(--border-color); border-radius: 12px;
+      padding: 1.5rem; box-shadow: 0 10px 30px var(--shadow-color);
+      max-width: 90%; width: 300px; position: relative;
+      text-align: center; transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.open .modal-content { transform: scale(1); }
+    .modal-close {
+      position: absolute; top: 10px; right: 15px; font-size: 2rem;
+      color: var(--secondary-text); cursor: pointer; background: none;
+      border: none; line-height: 1; padding: 0;
+      transition: color 0.3s ease;
+    }
+    .modal-close:hover { color: var(--primary-text); }
+    .modal-content h3 {
+      background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 600;
+    }
+    .modal-content .info-row { margin-bottom: 1.5rem; }
+    .modal-content .info-row strong {
+      display: block; font-size: 0.85rem; color: var(--secondary-text);
+      margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .modal-content .info-row p {
+        color: var(--primary-text); font-weight: 500;
+        margin: 0; font-size: 1rem;
+    }
+    .modal-button {
+      display: block; width: 100%; padding: 12px 0;
+      margin-top: 1rem; background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+      color: #fff; text-decoration: none; font-weight: 600;
+      border-radius: 8px; transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+    .modal-button:hover { opacity: 0.9; transform: translateY(-1px); }
     
   </style>
  </head>
  <body>
   <div class="container">
    <header class="dashboard-header">
-    <a href="https://hs-toolkit.netlify.app/info" class="profile-icon">HS</a>
+    <div class="profile-icon" id="open-modal-btn">HS</div>
     
-    <div class="title">Photo Hub</div> <div class="theme-switcher">
+    <div class="title">Photo Hub</div> 
+    
+    <div class="theme-switcher">
      <input id="theme-toggle" type="checkbox"/>
      <label for="theme-toggle"></label>
     </div>
@@ -335,16 +385,31 @@
      <span class="card-title">HS AI Image Tool</span>
      <span class="card-subtitle">Transform existing images</span>
     </a>
+    
+    <a class="tool-card" href="https://hs-toolkit-faceswap.netlify.app/" target="_blank">
+     <i class="fas fa-people-arrows"></i>
+     <span class="card-title">HS Face Swap</span>
+     <span class="card-subtitle">Swap faces in images</span>
+    </a>
+
+    <a class="tool-card" href="https://hs-toolkit-image-editor.netlify.app/" target="_blank">
+     <i class="fas fa-edit"></i>
+     <span class="card-title">HS Image Editor</span>
+     <span class="card-subtitle">Blur, compress, convert</span>
+    </a>
+    
     <a class="tool-card" href="https://hs-toolkit-image-gen.netlify.app/" target="_blank">
      <i class="fas fa-palette"></i>
      <span class="card-title">HS Image Generator</span>
      <span class="card-subtitle">Create images from text</span>
     </a>
+    
     <a class="tool-card" href="https://hs-toolkit-remini.netlify.app/" target="_blank">
      <i class="fas fa-camera-retro"></i>
      <span class="card-title">HS Image Enhancer</span>
      <span class="card-subtitle">Enhance images to HD</span>
     </a>
+    
     <a class="tool-card" href="https://hs-toolkit-bg-remover.netlify.app/" target="_blank">
      <i class="fas fa-eraser"></i>
      <span class="card-title">HS BG Remover</span>
@@ -355,6 +420,29 @@
    <footer class="site-footer">
     <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
    </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
   </div>
   
   <script>
@@ -368,14 +456,16 @@
       const body = document.body;
       const savedTheme = localStorage.getItem('theme');
       
+      // FIXED: Logic updated to match master template
+      // checked = LIGHT MODE
       if (savedTheme) {
-        if (savedTheme === 'dark') {
-          // DARK mode saved
-          body.classList.add('dark-mode');
-          themeToggle.checked = true;
-        } else {
+        if (savedTheme === 'light') {
           // LIGHT mode saved
           body.classList.remove('dark-mode');
+          themeToggle.checked = true;
+        } else {
+          // DARK mode saved
+          body.classList.add('dark-mode');
           themeToggle.checked = false;
         }
       } else {
@@ -384,12 +474,12 @@
         if (prefersDark) {
           // PREFERS DARK
           body.classList.add('dark-mode');
-          themeToggle.checked = true;
+          themeToggle.checked = false;
           localStorage.setItem('theme', 'dark');
         } else {
           // PREFERS LIGHT (default state)
           body.classList.remove('dark-mode');
-          themeToggle.checked = false;
+          themeToggle.checked = true;
           localStorage.setItem('theme', 'light');
         }
       }
@@ -397,23 +487,45 @@
       // Event listener for changes
       themeToggle.addEventListener('change', () => {
         if (themeToggle.checked) {
-          // CHECKED = DARK MODE
-          body.classList.add('dark-mode');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          // UNCHECKED = LIGHT MODE
+          // CHECKED = LIGHT MODE
           body.classList.remove('dark-mode');
           localStorage.setItem('theme', 'light');
+        } else {
+          // UNCHECKED = DARK MODE
+          body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
         }
       });
     })();
 
     /*
       ============================================
-      FUNCTION 2: DEVELOPER MODAL (REMOVED)
+      FUNCTION 2: DEVELOPER MODAL (RESTORED)
       ============================================
     */
-    // Modal JS removed
+    (function() {
+      const openBtn = document.getElementById('open-modal-btn');
+      const closeBtn = document.getElementById('close-modal-btn');
+      const modalOverlay = document.getElementById('developer-modal-overlay');
+
+      openBtn.addEventListener('click', () => {
+        modalOverlay.classList.add('open');
+      });
+      const closeModal = () => {
+        modalOverlay.classList.remove('open');
+      };
+      closeBtn.addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
+          closeModal();
+        }
+      });
+    })();
     
   </script>
  </body>
