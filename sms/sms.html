@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - SMS Bomber</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="sms.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS SMS BOMBER</div>
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="https://hs-toolkit.netlify.app/" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+   
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+      <h2 class="content-title">💣 SMS Bomber</h2>
+      <p class="content-subtitle">Send multiple SMS messages for testing purposes</p>
+      
+      <div class="warning-box">
+        <p>⚠️ For Educational & Testing Purposes Only! Use Responsibly.</p>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+          <label class="form-label">Phone Number (with country code)</label>
+          <input type="tel" id="phoneNumber" class="styled-input" placeholder="Enter phone number (e.g., 923001234567)">
+        </div>
+        
+        <button class="styled-button" id="sendBtn" onclick="sendSMS()">
+          <i class="fas fa-paper-plane"></i>
+          <span id="buttonText">🚀 Send SMS</span>
+        </button>
+        
+        <div class="result-box" id="result">
+          <h3 id="resultTitle">✅ Success</h3>
+          <p id="resultMessage"></p>
+        </div>
+      </div>
+    </div>
+
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+
+  <script src="sms.js" defer></script>
+
+ </body>
+</html>
