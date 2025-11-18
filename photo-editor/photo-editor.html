@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - Image Editor</title> 
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS IMAGE EDITOR</div> 
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="https://hs-toolkit.netlify.app/index2" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS PhotoHub</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">Upload Image</h2>
+        
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon-bg">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            </div>
+            <p>Drag & drop your image here or click to browse</p>
+            
+            <button class="styled-button" id="selectImageBtn" style="width: auto; padding: 12px 20px;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Select Image
+            </button>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fa-solid fa-check"></i> Image uploaded successfully!
+            </div>
+        </div>
+        <input type="file" id="fileInput" accept="image/*">
+    </div>
+    
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Processing your image...</p>
+    </div>
+    <div class="complete-message" id="completeMessage">
+        <i class="fa-solid fa-check-circle"></i> Process complete!
+    </div>
+
+    <div class="content-card">
+        <h2 class="content-title">Image Processing</h2>
+        
+        <div class="features-grid" id="featuresGrid">
+            <div class="feature-item" data-feature="blurface">
+                <i class="fa-solid fa-droplet-slash"></i>
+                <span>Blur Face</span>
+            </div>
+            <div class="feature-item" data-feature="compress">
+                <i class="fa-solid fa-file-export"></i>
+                <span>Compress</span>
+            </div>
+            <div class="feature-item" data-feature="image2jpg">
+                <i class="fa-solid fa-file-image"></i>
+                <span>Convert to JPG</span>
+            </div>
+            <div class="feature-item" data-feature="image2png">
+                <i class="fa-solid fa-file-image"></i>
+                <span>Convert to PNG</span>
+            </div>
+            <div class="feature-item" data-feature="upscale">
+                <i class="fa-solid fa-expand"></i>
+                <span>Upscale (4x)</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-card">
+        <h2 class="content-title">Result</h2>
+        
+        <div class="result-area" id="resultArea">
+            <p id="resultText">Result will appear here</p>
+            <img id="resultImage" class="result-image" alt="Processed Result">
+        </div>
+
+        <button class="styled-button" id="downloadBtn" disabled>
+            <i class="fa-solid fa-download"></i>
+            Download
+        </button>
+    </div>
+    
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="app.js" defer></script>
+
+ </body>
+</html>

@@ -1,0 +1,435 @@
+/* ============================================
+  PART 1: THEME & COLOR VARIABLES (Aapka Style)
+  ============================================
+*/
+:root {
+  --bg-color: #f4f7f6;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --primary-text: #1a1a1a;
+  --secondary-text: #555;
+  --accent-color-1: #007bff;
+  --accent-color-2: #6f42c1;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --border-color: rgba(255, 255, 255, 0.8);
+  --toggle-bg: #ccc;
+  --toggle-knob: #fff;
+  --input-bg: rgba(255, 255, 255, 0.5);
+  --success-color: #22c55e;
+  --error-color: #dc3545;
+}
+
+body.dark-mode {
+  --bg-color: #0d1117;
+  --card-bg: rgba(22, 27, 34, 0.7);
+  --primary-text: #f0f6fc;
+  --secondary-text: #8b949e;
+  --accent-color-1: #00eaff;
+  --accent-color-2: #ff00ff;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --toggle-bg: #333;
+  --toggle-knob: #fff; 
+  --input-bg: rgba(0, 0, 0, 0.2);
+  --success-color: #28a745;
+  --error-color: #f87171;
+}
+
+/* ============================================
+  PART 2: GENERAL PAGE STYLING (Aapka Style)
+  ============================================
+*/
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--primary-text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8rem 1rem 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+body::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(-45deg, var(--accent-color-1), var(--accent-color-2), var(--accent-color-1), var(--accent-color-2));
+  background-size: 400% 400%;
+  animation: gradient-flow 15s ease infinite;
+  z-index: -1; opacity: 0.15;
+}
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.container {
+  width: 100%;
+  /* Container ko thoda bada karte hain naye tool ke liye */
+  max-width: 650px; 
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ============================================
+  PART 3: THEME TOGGLE (Aapka Style - Fixed)
+  ============================================
+*/
+.theme-switcher { flex-shrink: 0; }
+.theme-switcher input { display: none; }
+.theme-switcher label {
+  cursor: pointer; display: block; width: 50px; height: 28px;
+  background-color: var(--toggle-bg); border-radius: 100px;
+  position: relative; transition: background-color 0.3s ease;
+}
+.theme-switcher label::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 22px; height: 22px; background-color: var(--toggle-knob);
+  border-radius: 50%; transition: 0.3s ease;
+}
+.theme-switcher input:checked + label { background-color: var(--accent-color-1); }
+.theme-switcher input:checked + label::after {
+  transform: translateX(22px);
+  background-color: #ffffff;
+}
+
+/* ============================================
+  PART 4: HEADER (Aapka Style - ADDED)
+  ============================================
+*/
+.dashboard-header {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  width: 100%;
+  max-width: 650px; /* Container se match */
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  position: fixed;
+  top: 1.5rem; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+@media (max-width: 690px) { /* 650px + 2rem padding */
+    .dashboard-header {
+        width: calc(100% - 2rem);
+        top: 1rem;
+    }
+}
+
+.dashboard-header .title {
+  flex-grow: 1; margin: 0 1rem; text-align: center;
+  font-size: 1.2rem; font-weight: 600; letter-spacing: 1px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.profile-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2));
+  color: #fff; display: flex; justify-content: center;
+  align-items: center; font-weight: 600; font-size: 1.1rem;
+  cursor: pointer; box-shadow: 0 2px 10px var(--shadow-color);
+  transition: transform 0.2s ease; flex-shrink: 0;
+}
+.profile-icon:hover { transform: scale(1.05); }
+
+/* ============================================
+  PART 5: CONTENT (Aapke Style Ke Hisaab Se)
+  ============================================
+*/
+.content-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.content-title {
+  font-size: 1.25rem; font-weight: 600;
+  color: var(--primary-text); text-align: center;
+  background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0rem;
+}
+
+.styled-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+  color: #fff; text-decoration: none; font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px -5px var(--accent-color-2);
+  border: none; cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem; width: 100%;
+}
+.styled-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -5px var(--accent-color-2);
+}
+.styled-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+  transform: none;
+  box-shadow: none;
+}
+
+.hidden { display: none; }
+
+.styled-button.btn-back {
+  background: var(--input-bg);
+  color: var(--primary-text);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+.styled-button.btn-back:hover {
+  background: var(--card-bg);
+  border-color: var(--accent-color-1);
+  box-shadow: 0 4px 10px var(--shadow-color);
+  transform: none;
+}
+
+/* ==========================================================
+  PART 5B: NEW TOOL STYLES (Adapted for HS Toolkit)
+  ==========================================================
+*/
+
+/* Upload Area (Restyled) */
+.upload-area {
+    border: 2px dashed var(--border-color); /* HS Var */
+    border-radius: 10px;
+    background-color: var(--input-bg); /* HS Var */
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 1rem; /* Added gap */
+}
+
+.upload-area.active {
+    border-color: var(--accent-color-1); /* HS Var */
+    background-color: var(--card-bg); /* HS Var */
+}
+
+.upload-icon-bg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--input-bg); /* HS Var */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-icon-bg i {
+    color: var(--accent-color-1); /* HS Var */
+    font-size: 1.5rem;
+}
+
+.upload-area p {
+    color: var(--secondary-text); /* HS Var */
+    font-size: 0.9rem;
+}
+
+/* Select button is now .styled-button */
+
+.success-message {
+    color: var(--success-color); /* HS Var */
+    font-size: 0.9rem;
+    display: none;
+}
+
+/* Features Grid (Restyled) */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.feature-item {
+    background-color: var(--input-bg); /* HS Var */
+    border: 1px solid var(--border-color); /* HS Var */
+    border-radius: 8px;
+    padding: 20px 10px;
+    text-align: center;
+    color: var(--secondary-text); /* HS Var */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+    background-color: var(--card-bg); /* HS Var */
+    transform: translateY(-2px);
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: var(--accent-color-1); /* HS Var */
+}
+
+.feature-item.coming-soon {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.feature-item.coming-soon i {
+    color: var(--secondary-text); /* HS Var */
+}
+
+/* Result Area (Restyled) */
+.result-area {
+    width: 100%;
+    min-height: 80px;
+    border: 1px solid var(--border-color); /* HS Var */
+    border-radius: 8px;
+    padding: 15px;
+    color: var(--secondary-text); /* HS Var */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--input-bg); /* HS Var */
+}
+
+.result-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    display: none;
+}
+
+/* Download button is now .styled-button */
+
+/* Loading (Restyled) */
+.loading {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    color: var(--primary-text); /* HS Var */
+}
+
+.spinner {
+    border: 3px solid var(--input-bg); /* HS Var */
+    border-top: 3px solid var(--accent-color-1); /* HS Var */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.complete-message {
+    color: var(--success-color); /* HS Var */
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: none;
+    text-align: center;
+}
+
+#fileInput {
+    display: none;
+}
+
+/* ============================================
+  PART 6: FOOTER (Aapka Style)
+  ============================================
+*/
+.site-footer {
+  text-align: center;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+.footer-credit {
+  font-size: 0.9rem;
+  color: var(--secondary-text);
+}
+
+/* ============================================
+  PART 7: DEVELOPER MODAL (Aapka Style)
+  ============================================
+*/
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center; align-items: center;
+  z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+.modal-content {
+  background: var(--card-bg); backdrop-filter: blur(15px);
+  border: 1px solid var(--border-color); border-radius: 12px;
+  padding: 1.5rem; box-shadow: 0 10px 30px var(--shadow-color);
+  max-width: 90%; width: 300px; position: relative;
+  text-align: center; transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+.modal-overlay.open .modal-content { transform: scale(1); }
+.modal-close {
+  position: absolute; top: 10px; right: 15px; font-size: 2rem;
+  color: var(--secondary-text); cursor: pointer; background: none;
+  border: none; line-height: 1; padding: 0;
+  transition: color 0.3s ease;
+}
+.modal-close:hover { color: var(--primary-text); }
+.modal-content h3 {
+  background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 600;
+}
+.modal-content .info-row { margin-bottom: 1.5rem; }
+.modal-content .info-row strong {
+  display: block; font-size: 0.85rem; color: var(--secondary-text);
+  margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.modal-content .info-row p {
+    color: var(--primary-text); font-weight: 500;
+    margin: 0; font-size: 1rem;
+}
+.modal-button {
+  display: block; width: 100%; padding: 12px 0;
+  margin-top: 1rem; background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+  color: #fff; text-decoration: none; font-weight: 600;
+  border-radius: 8px; transition: opacity 0.3s ease, transform 0.2s ease;
+}
+.modal-button:hover { opacity: 0.9; transform: translateY(-1px); }
