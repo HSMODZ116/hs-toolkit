@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - AI Image Tool</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="photo-ai.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS AI IMAGE TOOL</div>
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="https://hs-toolkit.netlify.app/index2" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS PhotoHub</span>
+   </a>
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">AI Image Transformation</h2>
+        <p style="text-align:center; color: var(--secondary-text); margin-top: -1rem; margin-bottom: 1rem;">
+            Upload your image, and transform it using an AI prompt.
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="imageFile" class="form-label" style="text-align: left;">1. Select Your Image File</label>
+            <input type="file" id="imageFile" accept="image/*" class="styled-input">
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="promptInput" class="form-label" style="text-align: left;">2. Transformation Prompt</label>
+            <input type="text" id="promptInput" class="styled-input" placeholder="Example: make this in cyberpunk style...">
+        </div>
+
+        <button id="processBtn" class="styled-button">
+            <svg id="buttonIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:20px; height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.01 12.01 0 002.944 12c0 2.215.717 4.29 2.013 5.965A11.966 11.966 0 0112 21.056c2.813 0 5.448-.96 7.551-2.673A11.967 11.967 0 0021.056 12a12.003 12.003 0 00-1.438-5.016z"></path></svg>
+            <span id="buttonText">Upload & Generate</span>
+        </button>
+
+        <p id="message" class="message-box hidden"></p>
+    </div>
+
+    <div class="content-card">
+        <div class="results-grid">
+            <div class="image-preview-box">
+                <h3>Your Image (Input)</h3>
+                <div class="image-container mx-auto">
+                    <img id="inputPreview" src="https://placehold.co/400x400/007BFF/FFFFFF?text=Select+Image" alt="Input Image Preview">
+                </div>
+            </div>
+
+            <div class="image-preview-box">
+                <h3>AI Transformed (Output)</h3>
+                <div id="outputImageContainer" class="image-container mx-auto">
+                    <img id="outputImage" src="https://placehold.co/400x400/8B949E/FFFFFF?text=Result+Here" alt="Generated Image">
+                    
+                    <button class="download-icon" id="downloadIconBtn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:24px; height:24px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    </button>
+                </div>
+                <button id="downloadBtn" class="styled-button hidden" style="margin-top: 1rem;">
+                    Download Transformed Image
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="photo-ai.js" defer></script>
+
+ </body>
+</html>
