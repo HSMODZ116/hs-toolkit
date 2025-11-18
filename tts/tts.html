@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - TTS Generator</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="tts.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS TTS GENERATOR</div> 
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="https://hs-toolkit.netlify.app/" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">HS TTS Generator</h2>
+        <p style="text-align:center; color: var(--secondary-text); margin-top: -1rem;">
+            Convert text to speech using TikTok neural voices
+        </p>
+        
+        <div class="form-group">
+            <label for="voice-select" class="form-label">Select Voice:</label>
+            <select id="voice-select" class="styled-select">
+                <option value="">Loading voices...</option>
+            </select>
+            <div id="voice-details" class="voice-info"></div>
+        </div>
+        
+        <div class="form-group">
+            <label for="text-input" class="form-label">Enter Text:</label>
+            <textarea id="text-input" class="styled-textarea" placeholder="Type the text you want to convert to speech..."></textarea>
+        </div>
+        
+        <button id="generate-btn" class="styled-button" disabled>
+             <i class="fas fa-microphone-alt"></i>
+            <span>Generate Speech</span>
+        </button>
+    </div>
+    
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Generating audio...</p>
+    </div>
+    
+    <div class="message-box error hidden" id="error"></div>
+    
+    <div class="content-card audio-container" id="audio-container" style="display: none;">
+        <h3>Your Generated Audio:</h3>
+        <audio id="audio-player" controls></audio>
+        <a id="download-link" class="styled-button" style="margin-top: 15px;" download="hs-tts-audio.mp3">
+            <i class="fas fa-download"></i>
+            <span>Download Audio</span>
+        </a>
+    </div>
+    
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="tts.js" defer></script>
+
+ </body>
+</html>
