@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - Custom Mail</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="custom-mail.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <div class="popup" id="copyPopup">
+   ✅ Copied!
+  </div>
+  <div class="popup" id="errorPopup">
+   ⚠️ Enter name and select domain
+  </div>
+
+  <div class="container">
+   <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS CUSTOM MAIL</div>
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+   </header>
+   
+   <h1 class="main-heading">HS TOOLKIT</h1> 
+   
+   <a href="https://hs-toolkit.netlify.app/" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+   <main class="temp-mail-content" style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+      <h2 class="content-title">Custom Mail</h2>
+      <p class="form-label">
+        Generate Random or Custom Emails Instantly ⚡
+      </p>
+      
+      <div class="email-display">
+        <span class="email-text" id="emailDisplay">---</span>
+        <button class="styled-button small" id="copyBtn">Copy</button>
+      </div>
+
+      <div class="button-grid">
+        <button class="styled-button btn-green" id="randomBtn">
+          🎲 Random
+        </button>
+        <button class="styled-button btn-blue" id="customBtn">
+          🧩 Custom
+        </button>
+      </div>
+
+      <div class="custom-box hidden" id="customBox">
+        <input class="styled-input" id="customName" placeholder="Enter name (e.g. haseeb)" type="text"/>
+        <select class="styled-input" id="domainSelect">
+        </select>
+        <button class="styled-button" id="generateCustomBtn">
+          ✅ Generate Custom
+        </button>
+      </div>
+    </div>
+    
+    <a class="styled-button" href="temp.html" style="width: 100%; text-align: center;">
+      📥 Go to Inbox
+    </a>
+
+   </main>
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="custom-mail.js" defer></script>
+
+ </body>
+</html>
