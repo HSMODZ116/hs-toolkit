@@ -37,6 +37,7 @@
       --border-color: rgba(255, 255, 255, 0.1);
       --toggle-bg: #333;
       --toggle-knob: #fff; /* Fixed */
+      --input-bg: rgba(0, 0, 0, 0.2); /* Dark mode 'Back' button fix */
     }
 
     /* ============================================
@@ -193,6 +194,7 @@
       box-shadow: 0 2px 10px var(--shadow-color);
       transition: transform 0.2s ease;
       flex-shrink: 0;
+      text-decoration: none; /* Added to remove underline */
     }
 
     .profile-icon:hover {
@@ -304,120 +306,17 @@
     }
 
     /* ============================================
-      PART 7: DEVELOPER MODAL STYLES
+      PART 7: DEVELOPER MODAL STYLES (REMOVED)
       ============================================
     */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .modal-overlay.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-content {
-      background: var(--card-bg);
-      backdrop-filter: blur(15px);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 10px 30px var(--shadow-color);
-      max-width: 90%;
-      width: 300px;
-      position: relative;
-      text-align: center;
-      transform: scale(0.8);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.open .modal-content {
-      transform: scale(1);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 15px; 
-      font-size: 2rem;
-      color: var(--secondary-text);
-      cursor: pointer;
-      background: none;
-      border: none;
-      line-height: 1;
-      padding: 0;
-      transition: color 0.3s ease;
-    }
-
-    .modal-close:hover {
-      color: var(--primary-text);
-    }
-
-    .modal-content h3 {
-      background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    .modal-content .info-row {
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-content .info-row strong {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--secondary-text);
-      margin-bottom: 0.4rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    /* Modal styles removed */
     
-    .modal-content .info-row p {
-        color: var(--primary-text);
-        font-weight: 500;
-        margin: 0;
-        font-size: 1rem;
-    }
-
-    .modal-button {
-      display: block;
-      width: 100%;
-      padding: 12px 0;
-      margin-top: 1rem;
-      background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 8px;
-      transition: opacity 0.3s ease, transform 0.2s ease;
-    }
-
-    .modal-button:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
   </style>
  </head>
  <body>
   <div class="container">
    <header class="dashboard-header">
-    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <a href="https://hs-toolkit.netlify.app/info" class="profile-icon">HS</a>
     
     <div class="title">Photo Hub</div> <div class="theme-switcher">
      <input id="theme-toggle" type="checkbox"/>
@@ -456,29 +355,6 @@
    <footer class="site-footer">
     <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
    </footer>
-  </div>
-  
-  <div class="modal-overlay" id="developer-modal-overlay">
-      <div class="modal-content">
-          <button class="modal-close" id="close-modal-btn">&times;</button>
-          <h3>Developer Info</h3>
-          <div class="info-row">
-              <strong>Name</strong>
-              <p>Haseeb Sahil</p>
-          </div>
-          <div class="info-row">
-              <strong>For Contact</strong>
-              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
-                  @Haseeb_Contact_Bot
-              </a>
-          </div>
-          <div class="info-row">
-              <strong>Telegram Channel</strong>
-              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
-                  HS MODZ Official Channel
-              </a>
-          </div>
-      </div>
   </div>
   
   <script>
@@ -534,41 +410,11 @@
 
     /*
       ============================================
-      FUNCTION 2: DEVELOPER MODAL
+      FUNCTION 2: DEVELOPER MODAL (REMOVED)
       ============================================
     */
-    (function() {
-      const openBtn = document.getElementById('open-modal-btn');
-      const closeBtn = document.getElementById('close-modal-btn');
-      const modalOverlay = document.getElementById('developer-modal-overlay');
-
-      // Function to open the modal
-      openBtn.addEventListener('click', () => {
-        modalOverlay.classList.add('open');
-      });
-
-      // Function to close the modal
-      const closeModal = () => {
-        modalOverlay.classList.remove('open');
-      };
-
-      // Close when the 'x' button is clicked
-      closeBtn.addEventListener('click', closeModal);
-
-      // Close when the overlay (outside the modal content) is clicked
-      modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-          closeModal();
-        }
-      });
-
-      // Close with the Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
-          closeModal();
-        }
-      });
-    })();
+    // Modal JS removed
+    
   </script>
  </body>
 </html>
