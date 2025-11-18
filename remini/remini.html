@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - Image Enhancer</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="remini.css" rel="stylesheet"/>
+  
+  <script src="remini.js" defer></script>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS IMAGE ENHANCER</div>
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+    
+   <a href="https://hs-toolkit.netlify.app/index2" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS PhotoHub</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">Image HD Pro</h2>
+        <p style="text-align:center; color: var(--secondary-text); margin-top: -1rem; margin-bottom: 1rem;">
+            Enhance your images to HD quality
+        </p>
+
+        <input type="file" id="imageFile" accept="image/*" class="hidden">
+        <label for="imageFile" class="file-upload-label">
+            <i class="fas fa-camera-retro"></i>
+            <p style="color: var(--primary-text); font-weight: 600;">Click to upload image</p>
+            <p style="color: var(--secondary-text); font-size: 0.8rem;">JPG, PNG, WEBP supported</p>
+        </label>
+
+        <button id="processBtn" class="styled-button">
+            <svg id="buttonIcon" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px; height:20px;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span id="buttonText">Enhance to HD</span>
+        </button>
+
+        <p id="message" class="message-box hidden"></p>
+    </div>
+
+    <div class="content-card">
+        <div class="results-grid">
+            <div class="image-preview-box">
+                <h3>Original Image</h3>
+                <div class="image-container">
+                    <img id="inputPreview" src="https://placehold.co/400x300/e2e8f0/64748b?text=Upload+Image" alt="Original" class="w-full h-auto rounded">
+                </div>
+            </div>
+
+            <div class="image-preview-box">
+                <h3>HD Enhanced</h3>
+                <div id="outputImageContainer" class="image-container">
+                    <img id="outputImage" src="https://placehold.co/400x300/d1fae5/10b981?text=HD+Result" alt="Result" class="w-full h-auto rounded">
+                    
+                    <button id="downloadIcon" class="download-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px; height:20px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <button id="downloadBtn" class="styled-button btn-green hidden" style="margin-top: 1rem;">
+                    Download HD Image
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+ </body>
+</html>
