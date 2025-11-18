@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - Developer Info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: rgba(255, 255, 255, 0.65);
+      --primary-text: #1a1a1a;
+      --secondary-text: #555;
+      --accent-color-1: #007bff;
+      --accent-color-2: #6f42c1;
+      --shadow-color: rgba(0, 0, 0, 0.08);
+      --border-color: rgba(255, 255, 255, 0.8);
+      --toggle-bg: #ccc;
+      --toggle-knob: #fff;
+      --input-bg: rgba(255, 255, 255, 0.5);
+    }
+
+    body.dark-mode {
+      --bg-color: #0d1117;
+      --card-bg: rgba(22, 27, 34, 0.7);
+      --primary-text: #f0f6fc;
+      --secondary-text: #8b949e;
+      --accent-color-1: #00eaff;
+      --accent-color-2: #ff00ff;
+      --shadow-color: rgba(0, 0, 0, 0.4);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --toggle-bg: #333;
+      --toggle-knob: #fff;
+      --input-bg: rgba(0, 0, 0, 0.2);
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--primary-text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 8rem 1rem 2rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative;
+    }
+    
+    body::before {
+      content: ''; 
+      position: absolute; 
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      background: linear-gradient(-45deg, var(--accent-color-1), var(--accent-color-2), var(--accent-color-1), var(--accent-color-2));
+      background-size: 400% 400%;
+      animation: gradient-flow 15s ease infinite;
+      z-index: -1; 
+      opacity: 0.15;
+    }
+    
+    @keyframes gradient-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .dashboard-header {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      justify-content: space-between; 
+      align-items: center;
+      position: fixed;
+      top: 1.5rem; 
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+    
+    @media (max-width: 540px) {
+      .dashboard-header {
+        width: calc(100% - 2rem);
+        top: 1rem;
+      }
+    }
+    
+    .dashboard-header .title {
+      flex-grow: 1; 
+      margin: 0 1rem; 
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2));
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 10px var(--shadow-color);
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    
+    .profile-icon:hover {
+      transform: scale(1.05);
+    }
+    
+    .theme-switcher { 
+      flex-shrink: 0; 
+    }
+    
+    .theme-switcher input { 
+      display: none; 
+    }
+    
+    .theme-switcher label {
+      cursor: pointer; 
+      display: block; 
+      width: 50px; 
+      height: 28px;
+      background-color: var(--toggle-bg); 
+      border-radius: 100px;
+      position: relative; 
+      transition: background-color 0.3s ease;
+    }
+    
+    .theme-switcher label::after {
+      content: ''; 
+      position: absolute; 
+      top: 3px; 
+      left: 3px;
+      width: 22px; 
+      height: 22px; 
+      background-color: var(--toggle-knob);
+      border-radius: 50%; 
+      transition: 0.3s ease;
+    }
+    
+    .theme-switcher input:checked + label { 
+      background-color: var(--accent-color-1); 
+    }
+    
+    .theme-switcher input:checked + label::after {
+      transform: translateX(22px);
+      background-color: #ffffff;
+    }
+
+    .content-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem; 
+    }
+    
+    .content-title {
+      font-size: 1.5rem; 
+      font-weight: 600;
+      text-align: center;
+      background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .styled-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 12px 20px;
+      background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+      color: #fff; 
+      text-decoration: none; 
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px -5px var(--accent-color-2);
+      border: none; 
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem; 
+      width: 100%;
+    }
+    
+    .styled-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -5px var(--accent-color-2);
+    }
+
+    .styled-button.btn-back {
+      background: var(--input-bg);
+      color: var(--primary-text);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 5px var(--shadow-color);
+    }
+    
+    .styled-button.btn-back:hover {
+      background: var(--card-bg);
+      border-color: var(--accent-color-1);
+      box-shadow: 0 4px 10px var(--shadow-color);
+      transform: none;
+    }
+
+    .developer-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      /* Removed border and border-image properties */
+      box-shadow: 0 4px 15px var(--shadow-color);
+      display: block;
+    }
+    
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    
+    .button-grid .styled-button {
+      width: 100%;
+      font-size: 0.85rem;
+      padding: 10px 15px;
+    }
+
+    .site-footer {
+      text-align: center;
+    }
+    
+    .footer-credit {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--secondary-text);
+    }
+    
+    .developer-name {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-text);
+    }
+  </style>
+</head>
+<body>
+  <header class="dashboard-header">
+    <a href="index.html" class="profile-icon">HS</a>
+    
+    <div class="title">DEVELOPER INFO</div>
+    
+    <div class="theme-switcher">
+      <input id="theme-toggle" type="checkbox"/>
+      <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="styled-button btn-back" style="text-decoration: none;">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to HS Toolkit</span>
+    </a>
+
+    <main class="content-card">
+      <h2 class="content-title">Developer Info</h2>
+      
+      <!-- Developer Logo -->
+      <img src="https://i.ibb.co/SXpKZ4GY/file-43.jpg" alt="Developer Logo" class="developer-logo" onerror="this.style.display='none'">
+      
+      <!-- Developer Name -->
+      <div class="developer-name">Haseeb Sahil</div>
+      
+      <!-- Button Grid -->
+      <div class="button-grid">
+        <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="styled-button">
+          <i class="fas fa-envelope"></i>
+          <span>Contact</span>
+        </a>
+        <a href="https://t.me/hsmodzofc2" target="_blank" class="styled-button">
+          <i class="fab fa-telegram"></i>
+          <span>Telegram</span>
+        </a>
+      </div>
+    </main>
+   
+    <footer class="site-footer">
+      <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+    </footer>
+  </div>
+  
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+      const savedTheme = localStorage.getItem('theme');
+      
+      if (savedTheme) {
+        if (savedTheme === 'dark') {
+          body.classList.add('dark-mode');
+          themeToggle.checked = true;
+        } else {
+          body.classList.remove('dark-mode');
+          themeToggle.checked = false;
+        }
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+          body.classList.add('dark-mode');
+          themeToggle.checked = true;
+          localStorage.setItem('theme', 'dark');
+        } else {
+          body.classList.remove('dark-mode');
+          themeToggle.checked = false;
+          localStorage.setItem('theme', 'light');
+        }
+      }
+
+      themeToggle.addEventListener('change', () => {
+        if (themeToggle.checked) {
+          body.classList.add('dark-mode');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          body.classList.remove('dark-mode');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
