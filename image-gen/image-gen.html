@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - AI Image Generator</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="image-gen.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS AI IMAGE GENERATOR</div>
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+    
+   <a href="https://hs-toolkit.netlify.app/index2" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS PhotoHub</span>
+   </a>
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">Create AI Images</h2>
+        <p style="text-align:center; color: var(--secondary-text); margin-top: -1rem; margin-bottom: 1rem;">
+            Transform your ideas into stunning visuals with AI
+        </p>
+        
+        <textarea 
+            id="prompt-input" 
+            class="styled-input" 
+            rows="4"
+            placeholder="Describe your image... e.g., sunset over mountains"
+        ></textarea>
+        
+        <button 
+            id="generate-btn" 
+            class="styled-button"
+        >
+            <i id="buttonIcon" class="fas fa-wand-magic-sparkles"></i>
+            <span id="buttonText">Generate</span>
+        </button>
+        <p id="error-message" class="message-box error hidden"></p>
+        
+        <div id="loading" class="hidden text-center py-8">
+            <div class="loader-full"></div>
+            <p style="color: var(--secondary-text);">Creating your images...</p>
+        </div>
+    </div>
+
+    <div class="content-card hidden" id="results-section">
+        <h2 class="content-title">Your Generated Images</h2>
+        <div id="images-grid" class="results-grid"></div>
+    </div>
+    
+    </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="image-gen.js" defer></script>
+
+ </body>
+</html>
