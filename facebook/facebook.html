@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - Facebook Download</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="facebook.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <div class="container">
+   <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS FACEBOOK DOWNLOAD</div>
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+   </header>
+   
+   <h1 class="main-heading">HS TOOLKIT</h1> 
+   
+   <a href="https://hs-toolkit.netlify.app/" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+      <h2 class="content-title">Facebook Downloader</h2>
+      <p class="form-label" style="text-align:center;">
+        Download Facebook videos in HD and SD quality.
+      </p>
+      
+      <div class="input-group-styled">
+        <input type="text" id="videoUrl" class="styled-input" placeholder="Enter Facebook video link..." autocomplete="off">
+        <button class="styled-button small" id="pasteBtn" title="Paste from Clipboard">
+            <i class="fas fa-clipboard"></i>
+        </button>
+      </div>
+
+      <button class="styled-button" id="downloadBtn">
+        <i class="fas fa-download"></i>
+        <span>Download</span>
+      </button>
+      
+      <div id="message" class="message-box hidden"></div>
+      
+    </div>
+    
+    <div class="content-card hidden" id="results">
+      <h2 class="content-title">Video Found!</h2>
+      
+      <div class="video-details">
+          <p style="text-align:center; font-weight: 600; color: var(--primary-text);">
+            Title: <span id="videoTitle"></span>
+          </p>
+      </div>
+
+      <div class="download-options">
+          <a id="sdDownloadLink" class="styled-button sd" href="#" download>SD Video Download</a>
+          <a id="hdDownloadLink" class="styled-button hd" href="#" download>HD Video Download</a>
+      </div>
+    </div>
+
+   </main>
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="facebook.js" defer></script>
+
+ </body>
+</html>
