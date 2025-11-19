@@ -429,6 +429,7 @@
                 
                 // Encode the URL for the API
                 const encodedUrl = encodeURIComponent(url);
+                // NOTE: Using a CORS proxy is often necessary for client-side API calls
                 const API_URL = `https://teraboxapi.alphaapi.workers.dev/?url=${encodedUrl}`;
                 const PROXIED_API_URL = "https://corsproxy.io/?" + encodeURIComponent(API_URL);
                 
@@ -475,7 +476,7 @@
                 resultSection.style.display = 'none';
             }
             
-            // --- MODIFIED FUNCTION FOR AUTO-DOWNLOAD ---
+            // --- FINAL MODIFIED FUNCTION FOR WINDOW.OPEN DOWNLOAD ---
             function displayFileInfo(data) {
                 // Clear previous content
                 fileContainer.innerHTML = '';
@@ -505,35 +506,22 @@
                             fileHTML += `<img src="${file.thumbnail}" alt="Thumbnail" class="thumbnail">`;
                         }
                         
-                        // Display a message indicating auto-download has started
+                        // Display message for New Tab download
                         fileHTML += `
-                            <div class="success-message" style="display:block; margin-top:10px; background:#e6ffe6; color:#1a8a1a;">
-                                <strong><i class="fas fa-check-circle"></i> Download Started:</strong> Your file is downloading in the background. Check your browser's download manager.
+                            <div class="success-message" style="display:block; margin-top:10px; background:#f0f8ff; color:#0056b3; border-left: 4px solid #0056b3;">
+                                <strong><i class="fas fa-external-link-alt"></i> Processing Download:</strong> A new tab/window has opened with the direct download link. If the file doesn't start downloading automatically, please check the new window.
                             </div>
                         `;
 
                         fileInfo.innerHTML = fileHTML;
                         fileContainer.appendChild(fileInfo);
                         
-                        // ✨ AUTO-DOWNLOAD LOGIC: Use the dlink immediately to avoid expiration ✨
+                        // ✨ FINAL AUTO-DOWNLOAD LOGIC: Using window.open() to bypass referrer/authorization checks ✨
                         if (file.dlink) {
                             const downloadUrl = file.dlink;
-                            const filename = file.name;
                             
-                            // 1. Create a hidden <a> tag to trigger download
-                            const downloadLink = document.createElement('a');
-                            downloadLink.href = downloadUrl;
-                            downloadLink.download = filename;
-                            downloadLink.style.display = 'none';
-                            document.body.appendChild(downloadLink);
-                            
-                            // 2. Click the link immediately
-                            downloadLink.click();
-                            
-                            // 3. Clean up the element
-                            setTimeout(() => {
-                                document.body.removeChild(downloadLink);
-                            }, 500);
+                            // Open the download URL in a new blank tab
+                            window.open(downloadUrl, '_blank');
                         }
                     });
                 }
@@ -558,7 +546,7 @@
                     serverInfo.innerHTML = serverHTML;
                 }
             }
-            // --- END OF MODIFIED FUNCTION ---
+            // --- END OF FINAL MODIFIED FUNCTION ---
         });
     </script>
 </body>
