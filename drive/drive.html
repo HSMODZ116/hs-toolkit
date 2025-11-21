@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - Drive Downloader</title> 
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="drive.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">DRIVE DOWNLOADER</div> 
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="index.html" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">Google Drive Link</h2>
+        <p style="text-align:center; color: var(--secondary-text); margin-top: -1rem; margin-bottom: 1rem;">
+            Convert Google Drive links to direct download links.
+        </p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="link" class="form-label">Link</label>
+            <input type="text" id="link" class="styled-input" placeholder="Google Drive Link Yahan Paste Karein..." autocomplete="off">
+        </div>
+        
+        <button class="styled-button" id="processBtn" onclick="check()">
+            Fetch Video/File
+        </button>
+        
+        <p id="msg" style="text-align: center; margin-top: 10px; color: var(--error-color); font-weight: bold;"></p>
+    </div>
+
+    <div class="content-card" id="result-area" style="display: none;">
+        <div id="fileTypeBadge" class="file-type-badge" style="display: none;"></div>
+        
+        <div class="file-info-three">
+            <div class="file-info-item-three">
+                <div class="file-info-label">File Type</div>
+                <div id="fileTypeValue" class="file-info-value">---</div>
+            </div>
+            <div class="file-info-item-three">
+                <div class="file-info-label">File Size</div>
+                <div id="fileSizeValue" class="file-info-value">---</div>
+            </div>
+            <div class="file-info-item-three">
+                <div class="file-info-label">Last Modified</div>
+                <div id="fileModifiedValue" class="file-info-value">---</div>
+            </div>
+        </div>
+        
+        <div class="file-details-info" id="fileDetailsInfo" style="display: none;">
+            <div class="file-details-row">
+                <div class="file-details-label">📅 Created On:</div>
+                <div id="creationDateValue" class="file-details-value">---</div>
+            </div>
+            <div class="file-details-row">
+                <div class="file-details-label">✏️ Last Modified:</div>
+                <div id="modifiedDateValue" class="file-details-value">---</div>
+            </div>
+            <div class="file-details-row">
+                <div class="file-details-label">👤 Modified By:</div>
+                <div id="modifiedByValue" class="file-details-value">---</div>
+            </div>
+        </div>
+        
+        <div id="fileTypeIcon" class="file-type-icon" style="display: none;"></div>
+        <img id="fileThumbnail" src="" alt="File Thumbnail" onclick="openPreview()" style="display: none;">
+        <p id="fileNameDisplay">---</p>
+
+        <div class="action-buttons">
+            <a id="previewBtn" class="styled-button btn-back" href="javascript:void(0)" onclick="openPreview()" style="display: none; text-decoration: none;">
+                👁️ Preview File
+            </a>
+            <a id="directDownloadBtn" class="styled-button" href="javascript:void(0)" onclick="startDownload()" style="text-decoration: none;">
+                Prepare Download
+            </a>
+        </div>
+        
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+        <div class="progress-info" id="progressInfo" style="display: none;">
+            <span id="progressStatus">Preparing download...</span>
+            <span id="progressTime">Estimated time: --</span>
+        </div>
+    </div>
+    
+    <div class="instructions">
+        <h3>Kaise Istemal Karein:</h3>
+        <ol>
+            <li>Apna Google Drive link input field mein paste karein</li>
+            <li>"Fetch Video/File" par click karein</li>
+            <li>File details, size aur modification history check karein</li>
+            <li>File creation date aur last modified date dekh lein</li>
+            <li>"Preview File" par click karke file dekh lein</li>
+            <li>"Prepare Download" par click karein aur progress bar ka intezaar karein</li>
+            <li>Jab progress bar complete ho jaye, file automatically download ho jayegi</li>
+        </ol>
+    </div>
+    
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <div id="previewModal" class="preview-modal">
+      <div class="preview-content">
+        <button class="preview-close" onclick="closePreview()">&times;</button>
+        <div id="previewContainer" style="width: 100%; display: flex; justify-content: center;">
+          </div>
+        <div class="preview-controls">
+          <button class="styled-button btn-back" onclick="closePreview()">Close Preview</button>
+          <button class="styled-button" onclick="startDownloadFromPreview()">Download Now</button>
+        </div>
+      </div>
+  </div>
+  
+  <script src="drive.js" defer></script>
+ </body>
+</html>
