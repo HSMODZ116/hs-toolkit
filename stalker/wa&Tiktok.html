@@ -1,1 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - WA & TikTok Stalker</title> 
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="wa&Tiktok.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">WA & TT STALKER</div> 
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="index.html" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <div class="platform-selector">
+            <div class="platform-tab active" data-platform="whatsapp">WhatsApp</div>
+            <div class="platform-tab" data-platform="tiktok">TikTok</div>
+        </div>
+        
+        <div class="platform-content active" id="whatsapp-content">
+            <h2 class="content-title" style="font-size: 1.1rem; margin-bottom: 1rem;">WhatsApp Channel Info</h2>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="whatsapp-url" class="form-label">Channel Link</label>
+                <input type="text" id="whatsapp-url" class="styled-input" placeholder="Paste WhatsApp channel link here">
+            </div>
+            
+            <button id="whatsapp-btn" class="styled-button" style="margin-top: 1rem;">
+                <i class="fab fa-whatsapp"></i> Get Details
+            </button>
+            
+            <div class="loading" id="whatsapp-loading">
+                <div class="spinner"></div>
+                <p>Fetching channel details...</p>
+            </div>
+            
+            <div class="error-message" id="whatsapp-error"></div>
+            
+            <div class="result" id="whatsapp-result">
+                <div class="channel-card">
+                    <div class="channel-header">
+                        <div class="channel-img">
+                            <img id="whatsapp-img" src="" alt="Channel Image">
+                        </div>
+                        <div class="channel-info">
+                            <h3 id="whatsapp-name">WhatsApp Channel</h3>
+                            <span class="followers" id="whatsapp-followers">0 followers</span>
+                        </div>
+                    </div>
+                    <div class="channel-description">
+                        <p id="whatsapp-description">Channel description will appear here</p>
+                        <button class="styled-button" id="whatsapp-copy-btn" style="width: auto; padding: 8px 15px; font-size: 0.8rem;">
+                            <i class="fas fa-copy"></i> Copy Description
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="platform-content" id="tiktok-content">
+            <h2 class="content-title" style="font-size: 1.1rem; margin-bottom: 1rem;">TikTok Profile Info</h2>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="tiktok-username" class="form-label">Username (without @)</label>
+                <input type="text" id="tiktok-username" class="styled-input" placeholder="e.g., mrbeast">
+            </div>
+            
+            <button id="tiktok-btn" class="styled-button" style="margin-top: 1rem;">
+                <i class="fab fa-tiktok"></i> Get Profile
+            </button>
+            
+            <div class="loading" id="tiktok-loading">
+                <div class="spinner"></div>
+                <p>Fetching profile details...</p>
+            </div>
+            
+            <div class="error-message" id="tiktok-error"></div>
+            
+            <div class="result" id="tiktok-result">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-img-container">
+                            <div class="profile-img">
+                                <img id="tiktok-img" src="" alt="Profile Image" style="display: none;">
+                                <div style="color: #999; font-size: 12px; padding: 10px; display:block;" id="img-placeholder">Loading...</div>
+                            </div>
+                            <div class="verified-badge" id="verified-badge" style="display: none;">✓</div>
+                        </div>
+                        <h2 class="profile-name" id="tiktok-nickname">Username</h2>
+                        <p class="profile-username" id="tiktok-username-display">@username</p>
+                        <p class="profile-bio" id="tiktok-signature">Bio will appear here</p>
+                    </div>
+                    
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="tiktok-followers">0</div>
+                            <div class="stat-label">Followers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="tiktok-following">0</div>
+                            <div class="stat-label">Following</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="tiktok-likes">0</div>
+                            <div class="stat-label">Likes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="tiktok-videos">0</div>
+                            <div class="stat-label">Videos</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Verified</span>
+                            <span class="detail-value"><span class="badge" id="tiktok-verified">No</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Private</span>
+                            <span class="detail-value"><span class="badge" id="tiktok-private">No</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Created</span>
+                            <span class="detail-value" id="tiktok-created">Unknown</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">ID</span>
+                            <span class="detail-value" id="tiktok-id">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <div class="copy-feedback" id="copy-feedback">
+      Description copied to clipboard!
+  </div>
+  
+  <script src="wa&Tiktok.js" defer></script>
+
+ </body>
+</html>
