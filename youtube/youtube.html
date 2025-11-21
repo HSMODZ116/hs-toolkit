@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - YouTube Downloader</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="youtube.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS YT DOWNLOADER</div> 
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="index.html" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">YouTube Link</h2>
+        <div class="input-section" style="display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" class="url-input" placeholder="Paste Your YouTube Link">
+            <button class="download-btn">Get Download Links</button>
+        </div>
+        
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Processing your request...</p>
+        </div>
+        
+        <div class="error-message">
+            <p>An error occurred. Please check the URL and try again.</p>
+        </div>
+        
+        <div class="success-message">
+            <p>Download completed successfully!</p>
+        </div>
+        
+        <div class="info-message">
+            <p>Download in progress...</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar-main">0%</div>
+        </div>
+    </div>
+
+    <div class="content-card result-section">
+        <div class="video-info">
+            <img class="thumbnail" src="" alt="Video Thumbnail">
+            <h2 class="video-title">Video Title Will Appear Here</h2>
+        </div>
+        
+        <div class="download-options">
+            <div class="download-option">
+                <h3 class="option-title"><i class="fas fa-music"></i> MP3 Audio</h3>
+                <p>High quality audio</p>
+                <button class="option-btn download-mp3">
+                    <span class="progress-bar"></span>
+                    <span class="option-btn-text">Download MP3</span>
+                </button>
+            </div>
+            
+            <div class="download-option">
+                <h3 class="option-title"><i class="fas fa-video"></i> MP4 Video</h3>
+                <p>High quality video</p>
+                <button class="option-btn download-mp4">
+                    <span class="progress-bar"></span>
+                    <span class="option-btn-text">Download MP4</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-card">
+        <p style="text-align:center; color: var(--secondary-text); font-size: 0.9rem; margin: 0;">
+            Paste any YouTube link (Shorts, Video, or Music) to download instantly in MP3 or MP4 format.
+        </p>
+    </div>
+
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="youtube.js" defer></script>
+
+ </body>
+</html>
