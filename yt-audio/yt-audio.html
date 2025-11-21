@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - AudioMate</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="yt-audio.css" rel="stylesheet"/>
+ </head>
+ <body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS AUDIOMATE</div> 
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="index.html" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">Search & Download Audio</h2>
+        
+        <div class="mode-toggle" style="margin-bottom: 1.5rem;">
+            <button class="mode-btn active" id="searchModeBtn">
+                <i class="fas fa-search"></i> Search Query
+            </button>
+            <button class="mode-btn" id="urlModeBtn">
+                <i class="fas fa-link"></i> YouTube URL
+            </button>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <input type="text" id="videoInput" class="styled-input" placeholder="Search your query (e.g., Kahani Suno)">
+        </div>
+        
+        <button id="generateBtn" class="styled-button" style="margin-top: 1rem;">
+             <i class="fas fa-bolt"></i> Generate Audio
+        </button>
+        
+        <div class="error-message" id="errorMessage">
+            <i class="fas fa-exclamation-circle"></i> Please enter a valid input
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Searching for audio...</p>
+        </div>
+    </div>
+
+    <div class="content-card result-container" id="resultContainer">
+        <div class="thumbnail-container">
+            <img src="" alt="Video Thumbnail" class="thumbnail" id="thumbnail">
+            <span class="video-duration" id="duration">0:00</span>
+        </div>
+        
+        <h2 class="video-title" id="videoTitle">Video Title</h2>
+        
+        <div class="video-details">
+            <span><i class="fas fa-eye"></i> <span id="views">0</span> views</span>
+            <span><i class="fas fa-calendar-alt"></i> <span id="published">Unknown</span></span>
+        </div>
+        
+        <div class="download-section">
+            <button class="download-btn" id="downloadBtn">
+                <i class="fas fa-download"></i> Download Audio
+            </button>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="progress-text" id="progressText">Preparing download...</div>
+            </div>
+        </div>
+    </div>
+    
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <script src="yt-audio.js" defer></script>
+
+ </body>
+</html>
