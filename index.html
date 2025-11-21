@@ -155,6 +155,7 @@
       align-items: center;
     }
     
+    /* Title ko link banane ke baad bhi style same rahe */
     .dashboard-header .title {
       flex-grow: 1; 
       margin: 0 1rem; 
@@ -166,6 +167,8 @@
       background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-decoration: none; /* Remove underline */
+      cursor: pointer; /* Show hand cursor */
     }
     
     .profile-icon {
@@ -275,7 +278,7 @@
    <header class="dashboard-header">
     <a href="info.html" class="profile-icon">HS</a>
     
-    <div class="title">HS TOOLKIT</div>
+    <a href="index.html" class="title">HS TOOLKIT</a>
     
     <div class="theme-switcher">
      <input id="theme-toggle" type="checkbox"/>
@@ -298,42 +301,12 @@
      <span class="card-subtitle">All Image Tools</span>
     </a>
     
-    <a class="tool-card" href="tts/tts.html">
-     <i class="fas fa-microphone-alt"></i>
-     <span class="card-title">HS TTS GENERATOR</span>
-     <span class="card-subtitle">Text to Speech</span>
+    <a class="tool-card" href="social-tools.html">
+     <i class="fas fa-share-alt"></i>
+     <span class="card-title">Social Hub</span>
+     <span class="card-subtitle">All Downloaders & Social</span>
     </a>
-
-    <a class="tool-card" href="sms/sms.html">
-     <i class="fas fa-comment-sms"></i>
-     <span class="card-title">HS SMS BOMBER</span>
-     <span class="card-subtitle">Advanced Messaging Tool</span>
-    </a>
-
-    <a class="tool-card" href="drive/drive.html">
-     <i class="fab fa-google-drive"></i>
-     <span class="card-title">HS DRIVE DOWNLOADER</span>
-     <span class="card-subtitle">Download Drive Files</span>
-    </a>
-
-    <a class="tool-card" href="yt-audio/yt-audio.html">
-     <i class="fas fa-music"></i>
-     <span class="card-title">HS AUDIOMATE</span>
-     <span class="card-subtitle">YouTube to Audio</span>
-    </a>
-
-    <a class="tool-card" href="youtube/youtube.html">
-     <i class="fab fa-youtube"></i>
-     <span class="card-title">HS YT DOWNLOADER</span>
-     <span class="card-subtitle">Download Videos</span>
-    </a>
-
-    <a class="tool-card" href="age-calculator/age-calculator.html">
-     <i class="fas fa-birthday-cake"></i>
-     <span class="card-title">AGE CALCULATOR</span>
-     <span class="card-subtitle">Calculate Exact Age</span>
-    </a>
-
+    
     <a class="tool-card" href="stalker/wa&Tiktok.html">
      <i class="fas fa-user-secret"></i>
      <span class="card-title">WA & TT STALKER</span>
@@ -345,22 +318,23 @@
      <span class="card-title">HS WEATHER CHECK</span>
      <span class="card-subtitle">Check Live Weather</span>
     </a>
-    <a class="tool-card" href="tiktok/tiktok.html">
-     <i class="fas fa-download"></i>
-     <span class="card-title">HS TIKTOK DOWNLOADER</span>
-     <span class="card-subtitle">Download Videos Easily</span>
+
+    <a class="tool-card" href="tts/tts.html">
+     <i class="fas fa-microphone-alt"></i>
+     <span class="card-title">HS TTS GENERATOR</span>
+     <span class="card-subtitle">Text to Speech</span>
     </a>
 
-    <a class="tool-card" href="facebook/facebook.html">
-     <i class="fab fa-facebook"></i>
-     <span class="card-title">HS FACEBOOK</span>
-     <span class="card-subtitle">Facebook Tools & Utilities</span>
+    <a class="tool-card" href="sms/sms.html">
+     <i class="fas fa-comment-sms"></i>
+     <span class="card-title">HS SMS BOMBER</span>
+     <span class="card-subtitle">Advanced Messaging Tool</span>
     </a>
-
-    <a class="tool-card" href="Instagram/Instagram.html">
-     <i class="fab fa-instagram"></i>
-     <span class="card-title">HS INSTAGRAM</span>
-     <span class="card-subtitle">Instagram Assistant</span>
+    
+    <a class="tool-card" href="age-calculator/age-calculator.html">
+     <i class="fas fa-birthday-cake"></i>
+     <span class="card-title">AGE CALCULATOR</span>
+     <span class="card-subtitle">Calculate Exact Age</span>
     </a>
     
     <a class="tool-card" href="temp-mail/temp-mail.html">
@@ -443,13 +417,6 @@
         }
       });
     })();
-
-    /*
-      ============================================
-      FUNCTION 2: DEVELOPER MODAL (REMOVED)
-      ============================================
-    */
-    // Modal JS removed
   </script>
  </body>
 </html>
