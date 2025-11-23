@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title>HS TOOLKIT - Hosting Dashboard</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link href="index.css" rel="stylesheet"/>
+</head>
+<body>
 
+  <div class="container">
+    <header class="dashboard-header">
+      <div class="profile-icon" id="open-modal-btn">HS</div>
+      <div class="title">HS Hosting</div>
+      <div class="theme-switcher">
+        <input id="theme-toggle" type="checkbox"/>
+        <label for="theme-toggle"></label>
+      </div>
+    </header>
+
+    <a href="https://hs-toolkit.netlify.app/" class="styled-button btn-back">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to HS Toolkit</span>
+    </a>
+
+    <div class="content-card">
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-value" id="totalUploads">0</div>
+          <div class="stat-label">Total Files</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="todayUploads">0</div>
+          <div class="stat-label">Uploaded Today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="totalSize">0</div>
+          <div class="stat-label">Used Space</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="activeFiles">0</div>
+          <div class="stat-label">Active Files</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <div class="upload-text">Upload Your Files</div>
+        <div class="upload-sub" style="color:var(--secondary-text); margin-bottom:20px; font-size:0.9rem;">Max 20MB • All Formats Supported</div>
+        
+        <div class="main-actions">
+          <button class="styled-button" onclick="document.getElementById('fileInput').click()">
+            <i class="fas fa-folder-open"></i> Browse Files
+          </button>
+          <button class="styled-button btn-url" id="urlPopupBtn">
+            <i class="fas fa-link"></i> URL Upload
+          </button>
+        </div>
+        <input type="file" class="file-input" id="fileInput">
+      </div>
+
+      <div class="file-status-area" id="fileStatusArea">
+        <div class="file-card">
+          <div style="font-size: 2rem; color:var(--accent-color-1);"><i class="fas fa-file"></i></div>
+          <div class="file-details">
+            <div class="file-name" id="selectedFileName">filename.jpg</div>
+            <div style="font-size:0.8rem; color:var(--secondary-text);" id="selectedFileSize">2.5 MB</div>
+          </div>
+        </div>
+        
+        <div id="actionContainer">
+          <div class="confirm-actions">
+            <button class="btn-confirm btn-cancel" id="cancelBtn">Cancel</button>
+            <button class="btn-confirm btn-start" id="uploadNowBtn">Upload</button>
+          </div>
+        </div>
+
+        <div id="progressContainer" style="display: none;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 5px; color:var(--secondary-text);">
+            <span>Uploading...</span>
+            <span>Please wait</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="response-wrapper" id="responseWrapper">
+      <div class="response-header">
+        <div class="success-badge"><i class="fas fa-check-circle"></i> Upload Successful</div>
+        <button class="close-resp-btn" onclick="closeResponse()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="resp-body">
+        <div class="resp-info">
+          <div class="resp-filename" id="respFileName">file_name_here.jpg</div>
+          <div class="resp-time" id="respTime">10:30 AM</div>
+          <div id="respUrl" style="display:none;"></div> 
+        </div>
+        <div class="resp-actions">
+          <button class="btn-resp btn-resp-copy" onclick="copyNewResult()"><i class="fas fa-copy"></i> Copy URL</button>
+          <button class="btn-resp btn-resp-open" onclick="openNewResult()"><i class="fas fa-external-link-alt"></i> Test / Open</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card recent-wrapper" id="recentWrapper">
+      <div class="section-title">
+        <span><i class="fas fa-history"></i> Recent Uploads</span>
+        <button onclick="clearHistory()" style="background:none; border:none; color:var(--error-bg); cursor:pointer; font-size:0.9rem;">Clear</button>
+      </div>
+      <div class="recent-grid" id="recentList">
+        </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="content-card">
+        <div class="info-title"><i class="fas fa-book"></i> How to Use</div>
+        <ul class="info-list">
+          <li><span class="info-icon">1.</span> Select a file or paste a URL.</li>
+          <li><span class="info-icon">2.</span> Click 'Upload' and wait.</li>
+          <li><span class="info-icon">3.</span> Copy the link generated.</li>
+          <li><span class="info-icon">4.</span> Files available globally.</li>
+        </ul>
+      </div>
+      
+      <div class="content-card">
+        <div class="info-title"><i class="fas fa-info-circle"></i> Limits</div>
+        <div style="margin-bottom: 10px; color: var(--secondary-text); font-size: 0.9rem;">
+          Max file size: <strong style="color: var(--accent-color-1);">20 MB</strong>
+        </div>
+        <div class="tag-container">
+          <span class="file-tag">JPG/PNG</span>
+          <span class="file-tag">MP4</span>
+          <span class="file-tag">MP3</span>
+          <span class="file-tag">PDF</span>
+          <span class="file-tag">ZIP</span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+    </footer>
+
+  </div> 
+  
+  <div class="url-popup" id="urlPopup">
+    <div class="popup-box">
+      <h3 style="margin-bottom:15px; color:var(--primary-text);">Paste File URL</h3>
+      <input type="url" class="popup-input" id="urlInput" placeholder="https://example.com/file.png">
+      <div class="confirm-actions">
+        <button class="btn-confirm btn-cancel" onclick="closeUrlPopup()">Close</button>
+        <button class="btn-confirm btn-start" id="startUrlUpload">Upload</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification" id="notification"></div>
+
+  <div class="modal-overlay" id="developer-modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="close-modal-btn">&times;</button>
+      <h3 style="background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;">Developer Info</h3>
+      <div class="info-row"><strong>Name</strong><p>Haseeb Sahil</p></div>
+      <div class="info-row"><strong>Contact</strong><a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">@Haseeb_Contact_Bot</a></div>
+      <div class="info-row"><strong>Channel</strong><a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">HS MODZ Official</a></div>
+    </div>
+  </div>
+
+  <script src="index.js" defer></script>
+</body>
+</html>
