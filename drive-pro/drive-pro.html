@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>HS TOOLKIT - Drive Downloader</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="drive-pro.css"/>
+</head>
+<body>
 
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">HS DRIVE DOWNLOADER</div> 
+    <div class="theme-switcher">
+     <input id="theme-toggle" type="checkbox"/>
+     <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+   
+   <a href="https://hstoolkit.pw/social-tools" class="styled-button btn-back" style="text-decoration: none;">
+    <i class="fas fa-arrow-left"></i>
+    <span>Back to HS Toolkit</span>
+   </a>
+
+   <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+    
+    <div class="content-card">
+        <h2 class="content-title">Google Drive Downloader</h2>
+        <div class="input-area">
+            <input type="text" id="driveLink" class="styled-input" placeholder="Paste Google Drive File or Folder Link Here..." autocomplete="off">
+            
+            <div class="button-grid">
+              <button class="styled-button" onclick="processDriveLink()">
+                <span id="processText">📥 Fetch Content</span>
+                <span id="processSpinner" class="spinner" style="display: none;"></span>
+              </button>
+              <button class="styled-button btn-secondary" onclick="clearLink()">🗑️ Clear</button>
+              <button class="styled-button btn-warning" onclick="validateLink()">🔍 Validate</button>
+            </div>
+        </div>
+
+        <div id="msg" class="message-box hidden"></div>
+
+        <div id="resultArea" class="result-area">
+            <div id="fileTypeBadge" class="file-type-badge"></div>
+            
+            <div class="file-info">
+              <div class="file-info-row">
+                <span class="file-info-label">📁 File Type:</span>
+                <span id="fileTypeValue" class="file-info-value">---</span>
+              </div>
+              <div class="file-info-row">
+                <span class="file-info-label">📊 File Size:</span>
+                <span id="fileSizeValue" class="file-info-value">---</span>
+              </div>
+              <div class="file-info-row">
+                <span class="file-info-label">🕒 Last Modified:</span>
+                <span id="fileModifiedValue" class="file-info-value">---</span>
+              </div>
+            </div>
+
+            <div id="fileTypeIcon" class="file-type-icon"></div>
+            <img id="fileThumbnail" src="" alt="File Thumbnail">
+            
+            <div class="file-name-display" id="fileNameDisplay">---</div>
+
+            <div class="action-buttons">
+              <button class="styled-button btn-secondary" id="previewBtn" onclick="previewFile()" style="display: none;">
+                👁️ Preview File
+              </button>
+              <button class="styled-button btn-success" id="downloadBtn" onclick="startDownload()">
+                ⬇️ Download Now
+              </button>
+            </div>
+
+            <div class="progress-container" id="progressContainer">
+              <div class="progress-bar" id="progressBar">0%</div>
+            </div>
+            <div class="progress-info" id="progressInfo">
+              <span id="progressStatus">Preparing download...</span>
+              <span id="progressTime">Estimated time: --</span>
+            </div>
+        </div>
+
+        <div id="folderQueue" class="folder-queue">
+            <div class="queue-header">
+              <h3 style="font-size: 1.2rem; color: var(--primary-text);">📋 Folder Download Queue</h3>
+              <div class="queue-stats">
+                <span id="totalFiles">0</span> Total | 
+                <span id="readyFiles">0</span> Ready
+              </div>
+            </div>
+
+            <div id="fileList">
+              </div>
+
+            <div class="progress-container" id="overallProgressContainer" style="display: none;">
+              <div class="progress-bar" id="overallProgressBar">0%</div>
+            </div>
+            <div class="progress-info" id="overallProgressInfo" style="display: none;">
+              <span id="overallProgressStatus">Preparing...</span>
+              <span id="overallProgressTime">--</span>
+            </div>
+
+            <div class="batch-controls">
+              <button class="styled-button btn-success" id="startBatchBtn" onclick="startFolderDownload()" disabled>
+                🚀 Start Download
+              </button>
+              <button class="styled-button btn-secondary" id="pauseBatchBtn" onclick="pauseFolderDownload()" disabled>
+                ⏸️ Pause
+              </button>
+              <button class="styled-button btn-warning" onclick="clearCompleted()">
+                🧹 Clear Done
+              </button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>📖 How to Use:</h3>
+            <ol>
+              <li>Paste your Google Drive file or folder link</li>
+              <li>Click "Fetch Content" button</li>
+              <li>Check file/folder details and information</li>
+              <li>Click 👁️ button to preview files</li>
+              <li>Click "Download Now" to start download</li>
+              <li>For folders, use Start/Pause to control batch download</li>
+              <li>Files will automatically download</li>
+            </ol>
+        </div>
+    </div>
+    
+   </main>
+   
+   <footer class="site-footer">
+    <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+   </footer>
+  </div>
+  
+  <div id="previewModal" class="preview-modal">
+    <div class="preview-content">
+      <div class="preview-header">
+        <div class="preview-title" id="previewFileName">File Preview</div>
+        <button class="preview-close" onclick="closePreview()">&times;</button>
+      </div>
+      <div class="preview-body" id="previewBody">
+        </div>
+      <div class="preview-actions">
+        <button class="styled-button btn-secondary" onclick="closePreview()">Close</button>
+        <button class="styled-button btn-success" id="previewDownloadBtn" onclick="downloadFromPreview()">Download Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+  
+  <div class="safe-area"></div>
+
+  <script src="drive-pro.js" defer></script>
+
+ </body>
+</html>
