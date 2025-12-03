@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - MediaFire Downloader</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="mediafire.css"/>
+</head>
+<body>
+  <div class="container">
+    <header class="dashboard-header">
+      <div class="profile-icon" id="open-modal-btn">HS</div>
+      <div class="title">MediaFire Tool</div>
+      <div class="theme-switcher">
+        <input id="theme-toggle" type="checkbox"/>
+        <label for="theme-toggle"></label>
+      </div>
+    </header>
 
+    <a href="https://hstoolkit.pw/social-tools" class="styled-button btn-back">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to SocialHub</span>
+    </a>
+
+    <main class="content-card">
+      <div class="input-section">
+        <div style="font-size: 3rem; margin-bottom: 10px; background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          <i class="fas fa-cloud-download-alt"></i>
+        </div>
+        <h3 style="margin-bottom: 5px; color: var(--primary-text);">MediaFire Downloader</h3>
+        <p style="color: var(--secondary-text); font-size: 0.9rem;">Get direct download links instantly</p>
+        
+        <div class="input-group">
+          <input type="text" id="mediafireUrl" placeholder="Paste MediaFire URL here...">
+          <button class="styled-button" id="fetchBtn" style="width: auto;">
+            Get Link
+          </button>
+        </div>
+        </div>
+      
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Fetching file info...</p>
+      </div>
+      
+      <div class="result-section" id="resultSection">
+        <h2><i class="fas fa-check-circle"></i> Download Ready!</h2>
+        <div class="file-info">
+          <div class="info-item">
+            <div class="info-label">File Name</div>
+            <div class="info-value" id="fileName">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">File Size</div>
+            <div class="info-value" id="fileSize">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">File Type</div>
+            <div class="info-value" id="fileType">-</div>
+          </div>
+        </div>
+        <button class="styled-button" id="downloadBtn">Download Now</button>
+      </div>
+      
+      <div class="error-section" id="errorSection">
+        <h4 style="margin-bottom: 5px;"><i class="fas fa-exclamation-triangle"></i> Error</h4>
+        <p id="errorMessage" style="font-size: 0.9rem; margin: 0;">Something went wrong.</p>
+      </div>
+    </main>
+   
+    <footer class="site-footer">
+      <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div class="modal-overlay" id="developer-modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="close-modal-btn">&times;</button>
+      <h3>Developer Info</h3>
+      <div class="info-row"><strong>Name</strong><p>Haseeb Sahil</p></div>
+      <div class="info-row"><strong>Contact</strong><a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">@Haseeb_Contact_Bot</a></div>
+      <div class="info-row"><strong>Channel</strong><a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">HS MODZ Official</a></div>
+    </div>
+  </div>
+
+  <script src="mediafire.js" defer></script>
+</body>
+</html>
