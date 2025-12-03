@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HS TOOLKIT - Snapchat Downloader</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="snapchat.css"/>
+</head>
+<body>
+  <div class="container">
+    <header class="dashboard-header">
+      <div class="profile-icon" id="open-modal-btn">HS</div>
+      <div class="title">Snapchat Tool</div>
+      <div class="theme-switcher">
+        <input id="theme-toggle" type="checkbox"/>
+        <label for="theme-toggle"></label>
+      </div>
+    </header>
 
+    <a href="https://hstoolkit.pw/social-tools" class="styled-button btn-back">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to SocialHub</span>
+    </a>
+
+    <main class="content-card">
+      <div class="logo-area">
+        <div class="logo-icon-large"><i class="fab fa-snapchat-ghost"></i></div>
+        <h2 style="font-size: 1.5rem; color: var(--primary-text);">SnapStory DL</h2>
+        <p style="color: var(--secondary-text); font-size: 0.9rem;">Download Public Stories</p>
+      </div>
+
+      <div class="search-section">
+        <div class="search-input-wrapper">
+          <input type="text" id="usernameInput" placeholder="Enter Snapchat username (e.g. kimkardashian)">
+        </div>
+        <button class="styled-button" id="searchBtn">
+          <i class="fas fa-search"></i> Search Stories
+        </button>
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Searching profile...</p>
+      </div>
+
+      <div class="error" id="error"></div>
+      <div class="no-results" id="noResults">
+        <div style="font-size: 2rem; margin-bottom: 10px;">📭</div>
+        <h3>No Stories Found</h3>
+        <p>This user has no public stories right now.</p>
+      </div>
+
+      <div class="results" id="results">
+        <div class="results-header">
+          <h2>Stories: <span id="usernameDisplay" style="color: var(--accent-color-1);"></span></h2>
+          <p class="story-count"><span id="storyCount">0</span> stories available</p>
+        </div>
+        
+        <div class="stories-grid" id="storiesGrid">
+          </div>
+      </div>
+    </main>
+   
+    <footer class="site-footer">
+      <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div class="modal-overlay" id="developer-modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="close-modal-btn">&times;</button>
+      <h3>Developer Info</h3>
+      <div class="info-row"><strong>Name</strong><p>Haseeb Sahil</p></div>
+      <div class="info-row"><strong>Contact</strong><a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">@Haseeb_Contact_Bot</a></div>
+      <div class="info-row"><strong>Channel</strong><a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">HS MODZ Official</a></div>
+    </div>
+  </div>
+
+  <script src="snapchat.js" defer></script>
+</body>
+</html>
