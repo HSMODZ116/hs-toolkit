@@ -1,26 +1,25 @@
 /* ============================================
-  PART 1: THEME & COLOR VARIABLES (Aapka Style)
+  PART 1: THEME & COLOR VARIABLES (HS Style)
   ============================================
 */
 :root {
-  /* Light Mode (Default) */
   --bg-color: #f4f7f6;
   --card-bg: rgba(255, 255, 255, 0.65);
   --primary-text: #1a1a1a;
   --secondary-text: #555;
-  --accent-color-1: #007bff;
-  --accent-color-2: #6f42c1;
+  --accent-color-1: #007bff; /* Blue */
+  --accent-color-2: #6f42c1; /* Purple */
   --shadow-color: rgba(0, 0, 0, 0.08);
   --border-color: rgba(255, 255, 255, 0.8);
   --toggle-bg: #ccc;
   --toggle-knob: #fff;
   --input-bg: rgba(255, 255, 255, 0.5);
-  --success-color: #22c55e;
-  --error-color: #dc3545;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
 }
 
 body.dark-mode {
-  /* Dark Mode */
   --bg-color: #0d1117;
   --card-bg: rgba(22, 27, 34, 0.7);
   --primary-text: #f0f6fc;
@@ -30,14 +29,12 @@ body.dark-mode {
   --shadow-color: rgba(0, 0, 0, 0.4);
   --border-color: rgba(255, 255, 255, 0.1);
   --toggle-bg: #333;
-  --toggle-knob: #fff; /* Fixed */
+  --toggle-knob: #fff; 
   --input-bg: rgba(0, 0, 0, 0.2);
-  --success-color: #28a745;
-  --error-color: #f87171;
 }
 
 /* ============================================
-  PART 2: GENERAL PAGE STYLING (Aapka Style)
+  PART 2: GENERAL PAGE STYLING
   ============================================
 */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,7 +46,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 8rem 1rem 2rem; /* Header ke liye top padding */
+  padding: 8rem 1rem 2rem;
   transition: background-color 0.3s ease, color 0.3s ease;
   position: relative;
 }
@@ -68,14 +65,14 @@ body::before {
 }
 .container {
   width: 100%;
-  max-width: 500px;
+  max-width: 800px; /* Wider container for data results */
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
 /* ============================================
-  PART 3: THEME TOGGLE (Aapka Style - Fixed)
+  PART 3: THEME TOGGLE
   ============================================
 */
 .theme-switcher { flex-shrink: 0; }
@@ -93,11 +90,11 @@ body::before {
 .theme-switcher input:checked + label { background-color: var(--accent-color-1); }
 .theme-switcher input:checked + label::after {
   transform: translateX(22px);
-  background-color: #ffffff; /* Hamesha white */
+  background-color: #ffffff;
 }
 
 /* ============================================
-  PART 4: HEADER (Aapka Style)
+  PART 4: HEADER
   ============================================
 */
 .dashboard-header {
@@ -108,21 +105,19 @@ body::before {
   padding: 1rem;
   box-shadow: 0 4px 15px var(--shadow-color);
   width: 100%;
-  max-width: 500px; /* Container ke width ke saath match */
+  max-width: 800px;
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  
   position: fixed;
   top: 1.5rem; 
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
 }
-
-@media (max-width: 540px) {
+@media (max-width: 840px) {
     .dashboard-header {
-        width: calc(100% - 2rem); /* Full width minus padding */
+        width: calc(100% - 2rem);
         top: 1rem;
     }
 }
@@ -146,7 +141,7 @@ body::before {
 .profile-icon:hover { transform: scale(1.05); }
 
 /* ============================================
-  PART 5: CONTENT (Aapke Style Ke Hisaab Se)
+  PART 5: CONTENT STYLES
   ============================================
 */
 .content-card {
@@ -159,7 +154,7 @@ body::before {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Gap between elements */
+  gap: 1.5rem;
 }
 .content-title {
   font-size: 1.25rem; font-weight: 600;
@@ -168,7 +163,9 @@ body::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0rem;
+  display: flex; justify-content: center; align-items: center; gap: 10px;
 }
+
 .styled-button {
   display: inline-flex;
   align-items: center;
@@ -184,9 +181,24 @@ body::before {
   font-family: 'Poppins', sans-serif;
   font-size: 0.95rem; width: 100%;
 }
+.styled-button.btn-back {
+  background: var(--input-bg);
+  color: var(--primary-text);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+.styled-button.btn-back:hover {
+  background: var(--card-bg);
+  border-color: var(--accent-color-1);
+  box-shadow: 0 4px 10px var(--shadow-color);
+  transform: none;
+}
 .styled-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px -5px var(--accent-color-2);
+}
+.styled-button:disabled {
+  opacity: 0.6; cursor: not-allowed; transform: none;
 }
 
 .styled-input {
@@ -205,121 +217,98 @@ body::before {
   box-shadow: 0 0 10px var(--accent-color-1);
 }
 
-/* Loader Style (Aapka Style) */
-.loader {
-  border: 4px solid var(--input-bg);
-  border-top: 4px solid var(--accent-color-1);
-  border-radius: 50%;
-  width: 40px; height: 40px;
-  animation: spin 1s linear infinite;
-  margin: auto;
-}
-@keyframes spin { 100% { transform: rotate(360deg);} }
+/* --- Database Tool Specific Styles --- */
+.input-group { margin-bottom: 0; }
+.input-hint { font-size: 0.8rem; color: var(--secondary-text); margin-top: 5px; }
+.search-buttons { display: flex; gap: 10px; margin-top: 1rem; }
 
-/* --- Naye DB Styles (Aapke Style Mein) --- */
-#result {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-  line-height: 1.6;
+/* API Status Grid */
+.api-status {
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px; 
+  margin-top: 1.5rem; /* Increased margin for separation */
 }
-.sim-card {
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 1rem;
-  background: var(--input-bg);
-  box-shadow: 0 2px 5px var(--shadow-color);
-  position: relative;
-  font-size: 0.9rem;
-  color: var(--secondary-text);
-  text-align: left;
-}
-.sim-card strong {
-  color: var(--primary-text);
+.api-badge {
+  padding: 8px;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 600;
-}
-.sim-card .icon-text {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 5px;
-}
-.sim-card .icon-text .fas {
-    width: 16px;
-    text-align: center;
-    color: var(--accent-color-1);
-}
-
-.sim-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
-}
-.copy-btn {
-  background: none;
-  border: none;
-  color: var(--accent-color-1);
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.2;
-}
-.copy-btn:hover {
-    color: var(--accent-color-2);
-}
-
-/* Contact Card REMOVED */
-
-/* Floating Button REMOVED */
-
-/* Copy Toast */
-.popup {
-  position: fixed;
-  top: 6rem; /* Header ke neeche */
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
+  gap: 6px;
+  justify-content: center;
+  background: var(--input-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 4px 15px var(--shadow-color);
-  color: var(--primary-text);
-  font-weight: 600;
-  z-index: 2000;
-  opacity: 0;
+  color: var(--secondary-text);
+}
+.api-badge.full-width-badge { grid-column: 1 / span 2; }
+
+.api-badge.active { color: var(--success-color); border-color: var(--success-color); background: rgba(16, 185, 129, 0.1); }
+.api-badge.inactive { color: var(--error-color); border-color: var(--error-color); background: rgba(239, 68, 68, 0.1); }
+.api-badge.loading { color: var(--warning-color); border-color: var(--warning-color); background: rgba(245, 158, 11, 0.1); }
+
+/* Results */
+.results-section { min-height: 200px; }
+.results-count { font-weight: 600; color: var(--accent-color-1); margin-bottom: 1rem; }
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.result-card {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-color-1);
+  border-radius: 10px;
+  padding: 15px;
   transition: all 0.3s ease;
 }
-.popup.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-.popup.success {
-  border-left: 4px solid var(--success-color);
-}
-.popup.error {
-  border-left: 4px solid var(--error-color);
-}
+.result-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px var(--shadow-color); }
 
-/* Back Button Style */
-.styled-button.btn-back {
-  background: var(--input-bg);
-  color: var(--primary-text);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 2px 5px var(--shadow-color);
+.result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.result-network {
+    padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #fff;
+    background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
 }
-.styled-button.btn-back:hover {
-  background: var(--card-bg);
-  border-color: var(--accent-color-1);
-  box-shadow: 0 4px 10px var(--shadow-color);
-  transform: none; /* No hover lift */
+.copy-btn { background: none; border: none; color: var(--secondary-text); cursor: pointer; font-size: 0.9rem; }
+.copy-btn:hover { color: var(--accent-color-1); }
+
+.result-detail { display: flex; gap: 10px; margin-bottom: 8px; font-size: 0.9rem; }
+.detail-icon { color: var(--accent-color-1); width: 20px; text-align: center; }
+.detail-label { font-weight: 600; color: var(--secondary-text); min-width: 70px; }
+.detail-value { flex: 1; word-break: break-all; color: var(--primary-text); }
+
+/* States */
+.state-container { text-align: center; padding: 2rem; color: var(--secondary-text); }
+.state-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
+.state-title { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600; }
+
+/* Toast */
+.toast-container {
+    position: fixed; bottom: 20px; right: 20px; z-index: 2000;
+    display: flex; flex-direction: column; gap: 10px;
 }
+.toast {
+    background: var(--card-bg); backdrop-filter: blur(10px);
+    color: var(--primary-text); padding: 12px 20px; border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 1px solid var(--border-color);
+    display: flex; align-items: center; gap: 10px; width: 300px;
+    animation: slideIn 0.3s ease; border-left: 4px solid var(--accent-color-1);
+}
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.toast.toast-success { border-left-color: var(--success-color); }
+.toast.toast-error { border-left-color: var(--error-color); }
+.toast.toast-warning { border-left-color: var(--warning-color); }
+
+.toast-icon { font-size: 1.2rem; }
+.toast-success .toast-icon { color: var(--success-color); }
+.toast-error .toast-icon { color: var(--error-color); }
 
 /* ============================================
-  PART 6: FOOTER (Aapka Style)
+  PART 6: FOOTER
   ============================================
 */
 .site-footer {
@@ -337,7 +326,7 @@ body::before {
 }
 
 /* ============================================
-  PART 7: DEVELOPER MODAL (Aapka Style)
+  PART 7: DEVELOPER MODAL (Existing)
   ============================================
 */
 .modal-overlay {
@@ -387,3 +376,49 @@ body::before {
   border-radius: 8px; transition: opacity 0.3s ease, transform 0.2s ease;
 }
 .modal-button:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ============================================
+  PART 8: TRUECALLER MODAL (New Styles)
+  ============================================
+*/
+#truecallerModal {
+    z-index: 1002; /* Higher than developer modal */
+}
+#truecallerModal .modal-content {
+    width: 380px;
+    padding: 2rem;
+}
+
+.truecaller-result h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent-color-1);
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#tcNameDisplay {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--success-color); /* Use success color for the name */
+    margin: 15px 0;
+    word-break: break-word;
+}
+
+#tcSimDisplay {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-color-2);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+#truecallerModal .state-message {
+    margin-top: 10px;
+}

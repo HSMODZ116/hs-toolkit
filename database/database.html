@@ -3,19 +3,18 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>HS TOOLKIT - HS Database</title>
+  <title>HS TOOLKIT - Database</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   
   <link href="database.css" rel="stylesheet"/>
-  
-  </head>
+ </head>
  <body>
 
   <header class="dashboard-header">
     <div class="profile-icon" id="open-modal-btn">HS</div>
-    <div class="title">HS DATABASE</div>
+    <div class="title">HS DATABASE</div> 
     <div class="theme-switcher">
      <input id="theme-toggle" type="checkbox"/>
      <label for="theme-toggle"></label>
@@ -23,8 +22,8 @@
   </header>
 
   <div class="container">
-    
-   <a href="https://hs-toolkit.netlify.app/" class="styled-button btn-back" style="text-decoration: none;">
+   
+   <a href="https://hstoolkit.pw/" class="styled-button btn-back" style="text-decoration: none;">
     <i class="fas fa-arrow-left"></i>
     <span>Back to HS Toolkit</span>
    </a>
@@ -32,19 +31,76 @@
    <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
     
     <div class="content-card">
-      <h2 class="content-title">Find SIM Data</h2>
-      <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
-        <label for="phone" style="font-weight: 600; color: var(--primary-text); text-align: left;">Enter Phone Number or CNIC:</label>
-        <input type="text" id="phone" class="styled-input" placeholder="e.g. 0300xxxxxxx or 13-digit CNIC">
-      </div>
-      <button class="styled-button" id="submit-button">
-        <i class="fas fa-search"></i> Find Data
-      </button>
-      
-      <div id="result"></div>
+        <h2 class="content-title">
+            <i class="fas fa-search"></i> SIM Database Lookup
+        </h2>
+        
+        <div class="input-group">
+            <label class="detail-label" style="display:block; margin-bottom:5px;">Enter Phone or CNIC</label>
+            <input 
+              type="text" 
+              id="searchInput" 
+              class="styled-input" 
+              placeholder="e.g., 03001234567 or 1234512345678"
+              autocomplete="off"
+            >
+            <div class="input-hint">
+              <i class="fas fa-info-circle"></i> Auto-detects network. 10-13 digits required.
+            </div>
+        </div>
+        
+        <div class="search-buttons">
+            <button class="styled-button" id="searchBtn">
+              <i class="fas fa-search"></i> Search
+            </button>
+            <button class="styled-button btn-back" id="truecallerBtn">
+              <i class="fas fa-id-badge"></i> Truecaller
+            </button>
+        </div>
+        
+        <div style="margin-top: -5px;"> 
+            <button class="styled-button" id="clearBtn">
+              <i class="fas fa-broom"></i> Clear All
+            </button>
+        </div>
+        
+        <div class="api-status">
+            <div class="api-badge loading" id="apiJazzStatus"><i class="fas fa-circle-notch fa-spin"></i> Jazz</div>
+            <div class="api-badge loading" id="apiTelenorStatus"><i class="fas fa-circle-notch fa-spin"></i> Telenor</div>
+            <div class="api-badge loading" id="apiZongStatus"><i class="fas fa-circle-notch fa-spin"></i> Zong</div>
+            <div class="api-badge loading" id="apiUfoneStatus"><i class="fas fa-circle-notch fa-spin"></i> Ufone</div>
+            <div class="api-badge loading full-width-badge" id="apiCnicStatus"><i class="fas fa-circle-notch fa-spin"></i> CNIC</div>
+        </div>
     </div>
-    
-    </main>
+
+    <div class="content-card results-section" id="resultsSection">
+        <h2 class="content-title" style="font-size: 1.1rem;">
+            <i class="fas fa-database"></i> Search Results
+        </h2>
+
+        <div class="results-count" id="resultsCount">0 records found</div>
+
+        <div class="search-buttons" id="resultsActions" style="display: none; margin-top: 0; margin-bottom: 1rem;">
+            <button class="styled-button btn-back" id="copyAllBtn" style="font-size: 0.8rem; padding: 8px;">
+              <i class="fas fa-copy"></i> Copy All
+            </button>
+            <button class="styled-button btn-back" id="exportBtn" style="font-size: 0.8rem; padding: 8px;">
+              <i class="fas fa-download"></i> Export CSV
+            </button>
+        </div>
+        
+        <div id="resultsContainer">
+            <div class="state-container">
+                <div class="state-icon">
+                  <i class="fas fa-search"></i>
+                </div>
+                <h3 class="state-title">No Search Yet</h3>
+                <p>Enter a number above to search across all networks.</p>
+            </div>
+        </div>
+    </div>
+
+   </main>
    
    <footer class="site-footer">
     <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
@@ -73,9 +129,29 @@
           </div>
       </div>
   </div>
-  
-  <div id="copyToast" class="popup"></div>
 
+  <div class="modal-overlay" id="truecallerModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeTcModal">&times;</button>
+      <div class="truecaller-result" id="truecallerResultDisplay">
+        <h4 id="tcModalTitle"><i class="fas fa-id-badge"></i> Truecaller Result</h4>
+        
+        <div id="tcLoadingState" class="state-container" style="padding: 10px 0; display: none;">
+            <div class="state-icon" style="font-size: 2rem;"><i class="fas fa-spinner fa-spin"></i></div>
+            <h3 class="state-title" style="font-size: 1rem;">Searching...</h3>
+        </div>
+        
+        <div id="tcResultContent" style="display: none;">
+            <div id="tcNameDisplay">---</div>
+            <div id="tcSimDisplay">Unknown SIM</div>
+            <p style="margin-top: 15px; font-size: 0.8rem; color: var(--secondary-text);">Data from Truecaller API</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  
   <script src="database.js" defer></script>
 
  </body>
