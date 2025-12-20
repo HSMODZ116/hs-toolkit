@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HS TOOLKIT - Prompt Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="prompt.css">
+</head>
+<body>
+
+  <header class="dashboard-header">
+    <div class="profile-icon" id="open-modal-btn">HS</div>
+    <div class="title">PROMPT GENERATOR PRO</div>
+    <div class="theme-switcher">
+      <input id="theme-toggle" type="checkbox"/>
+      <label for="theme-toggle"></label>
+    </div>
+  </header>
+
+  <div class="container">
+    <a href="https://hstoolkit.pw/" class="styled-button btn-back">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to HS Toolkit</span>
+    </a>
+
+    <div class="content-card">
+      <h2 style="text-align: center; margin-bottom: 0.5rem; background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🚀 AI Prompt Generator</h2>
+      <p style="text-align: center; color: var(--secondary-text); margin-bottom: 1.5rem; font-size: 0.9rem;">Image to Prompt & Text to Prompt - All AI Models Supported</p>
+      
+      <div class="tab-container">
+        <button class="tab active" data-tab="image-tab">Image to Prompt</button>
+        <button class="tab" data-tab="text-tab">Text to Prompt</button>
+      </div>
+
+      <div id="image-tab" class="tab-content active">
+        <div class="upload-section" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <h2>Upload Your Image</h2>
+            <p>Click or Drag & drop image (JPG, PNG, WEBP)</p>
+            <input type="file" id="fileInput" class="file-input" accept="image/*">
+        </div>
+        
+        <div class="error" id="imageError"></div>
+
+        <div class="preview-section" id="imagePreviewSection">
+            <h3 class="content-h2">Selected Image</h3>
+            <img id="imagePreview" class="image-preview" src="" alt="Image Preview">
+        </div>
+        
+        <div class="options-section" id="imageOptions" style="display: none;">
+            <h3 class="content-h2">Prompt Options</h3>
+            <div class="options-grid">
+                <div class="option-group">
+                    <label class="option-label">AI Model</label>
+                    <select id="imageModel" class="option-select">
+                        <option value="general">General</option>
+                        <option value="midjourney">Midjourney</option>
+                        <option value="dalle">DALL-E</option>
+                        <option value="stable_diffusion">Stable Diffusion</option>
+                        <option value="flux">Flux</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label class="option-label">Language</label>
+                    <select id="imageLang" class="option-select">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="it">Italian</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="ru">Russian</option>
+                        <option value="hi">Hindi</option>
+                        <option value="ur">Urdu</option>
+                    </select>
+                </div>
+            </div>
+            <button class="styled-button" id="generateImageBtn">
+                🚀 Generate Prompt
+            </button>
+        </div>
+        
+        <div class="loading" id="imageLoading">
+            <div class="spinner"></div>
+            <p style="color: var(--secondary-text);">Analyzing image and creating prompt...</p>
+        </div>
+        
+        <div class="result-section" id="imageResult">
+            <h3 class="content-h2">Generated Prompt <span class="model-badge" id="imageModelBadge">General</span></h3>
+            <div class="prompt-box" id="imagePromptOutput"></div>
+            <div class="action-buttons">
+                <button class="styled-button" id="copyImageBtn">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+                <button class="styled-button btn-back" id="resetImageBtn">
+                    <i class="fas fa-redo"></i> New
+                </button>
+            </div>
+        </div>
+      </div>
+
+      <div id="text-tab" class="tab-content">
+        <h3 class="content-h2">Enhance Text Prompt</h3>
+        <p style="color: var(--secondary-text); margin-bottom: 10px; font-size: 0.9rem;">Enter basic text and we'll enhance it into a professional prompt.</p>
+        
+        <textarea id="textInput" class="styled-input" placeholder="e.g., A majestic dragon flying over a medieval castle at sunset, epic fantasy style..."></textarea>
+        
+        <div class="options-grid" style="margin-top: 15px;">
+            <div class="option-group">
+                <label class="option-label">AI Model</label>
+                <select id="textModel" class="option-select">
+                    <option value="general">General</option>
+                    <option value="midjourney">Midjourney</option>
+                    <option value="dalle">DALL-E</option>
+                    <option value="stable_diffusion">Stable Diffusion</option>
+                    <option value="flux">Flux</option>
+                </select>
+            </div>
+            <div class="option-group">
+                <label class="option-label">Language</label>
+                <select id="textLang" class="option-select">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="hi">Hindi</option>
+                    <option value="ur">Urdu</option>
+                </select>
+            </div>
+            <div class="option-group">
+                <label class="option-label">Style</label>
+                <select id="textStyle" class="option-select">
+                    <option value="general">General</option>
+                    <option value="photorealistic">Photorealistic</option>
+                    <option value="ghibli">Ghibli</option>
+                    <option value="cyberpunk">Cyberpunk</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="anime">Anime</option>
+                    <option value="cinematic">Cinematic</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="error" id="textError"></div>
+        
+        <button class="styled-button" id="generateTextBtn" style="margin-top: 15px;">
+            🚀 Enhance Prompt
+        </button>
+        
+        <div class="loading" id="textLoading">
+            <div class="spinner"></div>
+            <p style="color: var(--secondary-text);">Enhancing your text...</p>
+        </div>
+        
+        <div class="result-section" id="textResult">
+            <h3 class="content-h2">Generated Prompt <span class="model-badge" id="textModelBadge">General</span></h3>
+            <div class="prompt-box" id="textPromptOutput"></div>
+            <div class="action-buttons">
+                <button class="styled-button" id="copyTextBtn">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+                <button class="styled-button btn-back" id="resetTextBtn">
+                    <i class="fas fa-redo"></i> New
+                </button>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="site-footer">
+      <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div class="modal-overlay" id="developer-modal-overlay">
+      <div class="modal-content">
+          <button class="modal-close" id="close-modal-btn">&times;</button>
+          <h3>Developer Info</h3>
+          <div class="info-row">
+              <strong>Name</strong>
+              <p>Haseeb Sahil</p>
+          </div>
+          <div class="info-row">
+              <strong>For Contact</strong>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
+                  @Haseeb_Contact_Bot
+              </a>
+          </div>
+          <div class="info-row">
+              <strong>Telegram Channel</strong>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
+                  HS MODZ Official Channel
+              </a>
+          </div>
+      </div>
+  </div>
+
+  <script src="prompt.js"></script>
+</body>
+</html>
