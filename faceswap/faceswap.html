@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   
-  <link href="faceswap.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="faceswap.css">
  </head>
  <body>
 
@@ -22,35 +22,25 @@
   </header>
 
   <div class="container">
-   
-   <a href="https://hs-toolkit.netlify.app/index2" class="styled-button btn-back" style="text-decoration: none;">
+   <a href="https://hs-toolkit.netlify.app/" class="styled-button btn-back" style="text-decoration: none;">
     <i class="fas fa-arrow-left"></i>
-    <span>Back to HS PhotoHub</span>
+    <span>Back to HS Toolkit</span>
    </a>
 
    <main style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
-    
     <div class="content-card">
         <h2 class="content-title">AI Face Swap Tool 🎭</h2>
-        
         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="faceImageFile" class="form-label" style="text-align: left;">1. 👨‍🦱 Source Face Image:</label>
             <input type="file" id="faceImageFile" accept="image/*" class="styled-input">
         </div>
-
         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
             <label for="targetImageFile" class="form-label" style="text-align: left;">2. 🧍 Target Body/Destination Image:</label>
             <input type="file" id="targetImageFile" accept="image/*" class="styled-input">
         </div>
-
-        <button id="swapButton" class="styled-button">
-            <i id="buttonIcon" class="fas fa-sync-alt"></i> <span id="buttonText">🚀 Perform Face Swap</span>
+        <button id="swapButton" class="styled-button" onclick="processFaceSwap()">
+            <i id="buttonIcon" class="fas fa-sync-alt"></i> <span id="buttonText">🚀 Perform Face Swap</span> 
         </button>
-
-        <a href="https://t.me/hsmodzofc2" target="_blank" class="styled-button btn-back" style="text-decoration: none;">
-            <i class="fab fa-telegram-plane"></i> <span>Join Telegram</span>
-        </a>
-
         <p id="message" class="message-box hidden"></p>
     </div>
 
@@ -60,19 +50,17 @@
                 <h3>AI Face Swap (Output)</h3>
                 <div id="outputImageContainer" class="image-container mx-auto">
                     <img id="swapImage" src="https://placehold.co/400x400/8B949E/FFFFFF?text=Result+Here" alt="Swapped Image">
-                    
-                    <button id="downloadIcon" class="download-icon">
+                    <button id="downloadIcon" class="download-icon" onclick="downloadSwappedImage()">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:24px; height:24px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     </button>
                 </div>
-                <button id="downloadBtn" class="styled-button hidden" style="margin-top: 1rem;">
+                <button id="downloadBtn" onclick="downloadSwappedImage()" class="styled-button hidden" style="margin-top: 1rem;">
                     Download Face Swapped Image
                 </button>
             </div>
         </div>
     </div>
-    
-    </main>
+   </main>
    
    <footer class="site-footer">
     <p class="footer-credit">© 2025 HS Toolkit. All rights reserved.</p>
@@ -83,26 +71,18 @@
       <div class="modal-content">
           <button class="modal-close" id="close-modal-btn">&times;</button>
           <h3>Developer Info</h3>
-          <div class="info-row">
-              <strong>Name</strong>
-              <p>Haseeb Sahil</p>
-          </div>
+          <div class="info-row"><strong>Name</strong><p>Haseeb Sahil</p></div>
           <div class="info-row">
               <strong>For Contact</strong>
-              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">
-                  @Haseeb_Contact_Bot
-              </a>
+              <a href="https://t.me/Haseeb_Contact_Bot" target="_blank" class="modal-button">@Haseeb_Contact_Bot</a>
           </div>
           <div class="info-row">
               <strong>Telegram Channel</strong>
-              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">
-                  HS MODZ Official Channel
-              </a>
+              <a href="https://t.me/hsmodzofc2" target="_blank" class="modal-button">HS MODZ Official Channel</a>
           </div>
       </div>
   </div>
   
-  <script src="faceswap.js" defer></script>
-
+  <script src="faceswap.js"></script>
  </body>
 </html>
