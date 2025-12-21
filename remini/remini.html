@@ -5,14 +5,14 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>HS TOOLKIT - Image Enhancer</title>
   
+  <!-- External Resources -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   
-  <link href="remini.css" rel="stylesheet"/>
-  
-  <script src="remini.js" defer></script>
- </head>
- <body>
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="remini.css">
+</head>
+<body>
 
   <header class="dashboard-header">
     <div class="profile-icon" id="open-modal-btn">HS</div>
@@ -24,8 +24,7 @@
   </header>
 
   <div class="container">
-    
-   <a href="https://hs-toolkit.netlify.app/index2" class="styled-button btn-back" style="text-decoration: none;">
+   <a href="https://hstoolkit.pw/index2" class="styled-button btn-back" style="text-decoration: none;">
     <i class="fas fa-arrow-left"></i>
     <span>Back to HS PhotoHub</span>
    </a>
@@ -45,7 +44,7 @@
             <p style="color: var(--secondary-text); font-size: 0.8rem;">JPG, PNG, WEBP supported</p>
         </label>
 
-        <button id="processBtn" class="styled-button">
+        <button id="processBtn" onclick="enhanceImage()" class="styled-button">
             <svg id="buttonIcon" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px; height:20px;">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
@@ -67,22 +66,21 @@
             <div class="image-preview-box">
                 <h3>HD Enhanced</h3>
                 <div id="outputImageContainer" class="image-container">
-                    <img id="outputImage" src="https://placehold.co/400x300/d1fae5/10b981?text=HD+Result" alt="Result" class="w-full h-auto rounded">
+                    <img id="outputImage" src="https://placehold.co/400x300/d1fae5/10b981?text=HD+Result" alt="Result" class="w-full h-auto rounded" onerror="handleImageError()">
                     
-                    <button id="downloadIcon" class="download-icon">
+                    <button id="downloadIcon" onclick="downloadEnhancedImage()" class="download-icon">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px; height:20px;">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
                     </button>
                 </div>
 
-                <button id="downloadBtn" class="styled-button btn-green hidden" style="margin-top: 1rem;">
+                <button id="downloadBtn" onclick="downloadEnhancedImage()" class="styled-button btn-green hidden" style="margin-top: 1rem;">
                     Download HD Image
                 </button>
             </div>
         </div>
     </div>
-    
     </main>
    
    <footer class="site-footer">
@@ -113,5 +111,7 @@
       </div>
   </div>
   
- </body>
+  <!-- JavaScript Files -->
+  <script src="remini.js"></script>
+</body>
 </html>
